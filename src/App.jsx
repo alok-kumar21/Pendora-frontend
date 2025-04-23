@@ -3,6 +3,7 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import useFilter from "./useFilter";
 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -16,6 +17,7 @@ import useFetch from "./pages/useFetch";
 import { useEffect, useState } from "react";
 
 function App() {
+  const { rating } = useFilter();
   const { data, loading, error } = useFetch(
     "http://localhost:4001/api/products"
   );
@@ -57,7 +59,10 @@ function App() {
           {/* <WishList /> */}
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/productlisting" element={<ProductListing />} />
+            <Route
+              path="/productlisting"
+              element={<ProductListing rating={rating} />}
+            />
             <Route path="/cart" element={<Cart />} />{" "}
             <Route path="/wishList" element={<WishList />} />
             <Route

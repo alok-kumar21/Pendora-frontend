@@ -6,12 +6,24 @@ import CartContext from "../context/CartContext";
 import useFilter from "../useFilter";
 
 const ProductListing = () => {
+  const {
+    category,
+    rating,
+    sortPrice,
+    handleCategoryChange,
+    handleRatingChange,
+    handleSortPriceChange,
+  } = useFilter();
+
   const { addToCart } = useContext(CartContext);
   const { data, loading, error } = useFetch(
     "https://pendora-backend.vercel.app/api/products"
   );
-  const { rating, getCategory, getRating, getShortPrice } = useFilter("");
-  console.log(rating);
+
+  // rating filter
+  const ratingData = data?.filter((item) => item.rating >= rating);
+
+  //sortByPrice
 
   return (
     <>
@@ -24,7 +36,15 @@ const ProductListing = () => {
         </div>
       )}
       <section className="d-flex">
-        <Filter />
+        <Filter
+          data={data}
+          category={category}
+          rating={rating}
+          sortPrice={sortPrice}
+          handleCategoryChange={handleCategoryChange}
+          handleRatingChange={handleRatingChange}
+          handleSortPriceChange={handleSortPriceChange}
+        />
 
         {/* Products */}
         <section className="mx-5 my-3">
@@ -37,32 +57,33 @@ const ProductListing = () => {
             </h5>
           </div>
           <div className="row ">
-            {data?.map((item) => (
-              <div key={item._id} className="col-md-3 mt-4">
-                <div className="card bg-light">
-                  <span className="position-relative">
-                    <i className="bi bi-bag-heart h2 text-secondary position-absolute top-0 end-0 my-3 me-4"></i>
-                  </span>
-                  <img className="img-fluid w-70" src={item.images} alt="" />
+            {ratingData &&
+              ratingData?.map((item) => (
+                <div key={item._id} className="col-md-3 mt-4">
+                  <div className="card bg-light">
+                    <span className="position-relative">
+                      <i className="bi bi-bag-heart h2 text-secondary position-absolute top-0 end-0 my-3 me-4"></i>
+                    </span>
+                    <img className="img-fluid w-70" src={item.images} alt="" />
 
-                  <div className=" text-center">
-                    <Link to={`/api/productdetails/${item._id}`}>
-                      <p className="card-text">{item.name}</p>
-                      <h5>₹{item.price}</h5>
-                    </Link>
-                    <div className="d-grid ">
-                      <button
-                        onClick={() => addToCart(item)}
-                        className="btn btn-primary rounded-0"
-                        type="button"
-                      >
-                        Go To Cart
-                      </button>
+                    <div className=" text-center">
+                      <Link to={`/api/productdetails/${item._id}`}>
+                        <p className="card-text">{item.name}</p>
+                        <h5>₹{item.price}</h5>
+                      </Link>
+                      <div className="d-grid ">
+                        <button
+                          onClick={() => addToCart(item)}
+                          className="btn btn-primary rounded-0"
+                          type="button"
+                        >
+                          Go To Cart
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </section>
       </section>

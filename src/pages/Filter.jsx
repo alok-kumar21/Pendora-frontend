@@ -1,8 +1,13 @@
 import useFilter from "../useFilter";
 
-const Filter = () => {
-  const { rating, getCategory, getRating, getShortPrice } = useFilter("");
-
+const Filter = ({
+  data,
+  handleCategoryChange,
+  handleRatingChange,
+  handleSortPriceChange,
+  handlerClearFilter,
+}) => {
+ 
 
   return (
     <>
@@ -14,7 +19,9 @@ const Filter = () => {
         >
           <div className="mx-4 d-flex justify-content-between pt-3">
             <h4>Filter</h4>
-            <h5 className="">clear</h5>
+            <button onClick={handlerClearFilter} className="">
+              clear
+            </button>
           </div>
           <div className="mt-5 mx-4">
             <label htmlFor="customRange1" className="form-label">
@@ -39,7 +46,7 @@ const Filter = () => {
 
             <div className="form-check">
               <input
-                onChange={getCategory}
+                onChange={handleCategoryChange}
                 className="form-check-input"
                 type="checkbox"
                 value="Men Clothing"
@@ -51,7 +58,7 @@ const Filter = () => {
             </div>
             <div className="form-check">
               <input
-                onChange={getCategory}
+                onChange={handleCategoryChange}
                 className="form-check-input"
                 type="checkbox"
                 value="Women Clothing"
@@ -71,7 +78,7 @@ const Filter = () => {
 
             <div className="form-check">
               <input
-                onChange={getRating}
+                onChange={handleRatingChange}
                 className="form-check-input"
                 type="radio"
                 value={4}
@@ -84,7 +91,7 @@ const Filter = () => {
             </div>
             <div className="form-check">
               <input
-                onChange={getRating}
+                onChange={handleRatingChange}
                 className="form-check-input"
                 value={3}
                 type="radio"
@@ -98,7 +105,7 @@ const Filter = () => {
 
             <div className="form-check">
               <input
-                onChange={getRating}
+                onChange={handleRatingChange}
                 className="form-check-input"
                 value={2}
                 type="radio"
@@ -111,7 +118,7 @@ const Filter = () => {
             </div>
             <div className="form-check">
               <input
-                onChange={getRating}
+                onChange={handleRatingChange}
                 className="form-check-input"
                 value={1}
                 type="radio"
@@ -133,7 +140,7 @@ const Filter = () => {
 
             <div className="form-check">
               <input
-                onChange={getShortPrice}
+                onChange={handleSortPriceChange}
                 className="form-check-input"
                 type="radio"
                 name="shortPrice"
@@ -145,7 +152,7 @@ const Filter = () => {
             </div>
             <div className="form-check">
               <input
-                onChange={getShortPrice}
+                onChange={handleSortPriceChange}
                 className="form-check-input"
                 type="radio"
                 name="shortPrice"
