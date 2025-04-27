@@ -2,7 +2,7 @@ import useFetch from "./useFetch";
 import { useParams } from "react-router-dom";
 const ProductDetails = () => {
   const { data, loading, error } = useFetch(
-    "http://localhost:4001/api/products"
+    "https://pendora-backend.vercel.app/api/products"
   );
   const { productId } = useParams();
 

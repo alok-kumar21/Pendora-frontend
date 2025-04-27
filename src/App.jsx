@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
+import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import useFilter from "./useFilter";
 
@@ -19,7 +20,7 @@ import { useEffect, useState } from "react";
 function App() {
   const { rating } = useFilter();
   const { data, loading, error } = useFetch(
-    "http://localhost:4001/api/products"
+    "https://pendora-backend.vercel.app/api/products"
   );
 
   // Initialize cart from localStorage or empty array
@@ -50,7 +51,7 @@ function App() {
 
   return (
     <>
-      <CartContext.Provider
+      <CartContext.Provider 
         value={{ productData: data, addToCart, cartItems, removeFromCart }}
       >
         <Router>
@@ -63,7 +64,7 @@ function App() {
               path="/productlisting"
               element={<ProductListing rating={rating} />}
             />
-            <Route path="/cart" element={<Cart />} />{" "}
+            <Route path="/cart" element={<Cart />} />
             <Route path="/wishList" element={<WishList />} />
             <Route
               path="/api/productdetails/:productId"

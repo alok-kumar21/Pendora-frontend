@@ -1,66 +1,95 @@
-// import { useState } from "react";
+import { useState, useEffect } from "react";
 
-// function useFilter(initialValue) {
-//   const [category, setCategory] = useState([]);
-//   const [rating, setRating] = useState(initialValue);
-//   const [sortPrice, setSortPrice] = useState(initialValue);
+function useFilter(data) {
+  const [category, setCategory] = useState({
+    men: false,
+    women: false,
+  });
+  const [priceRange, setPriceRange] = useState(1);
+  const [rating, setRating] = useState(null);
+  const [sortPrice, setSortPrice] = useState(null);
+  const [products, setProducts] = useState([]);
+  
+  useEffect(() => {
+    if (data) {
+      let filteredProducts = [...data];
 
-//   function getCategory(event) {
-//     setCategory(event.target.value);
-//   }
+      // apply filter price Range
+      if (priceRange) {
+        filteredProducts = filteredProducts.filter(
+          (product) => product.price >= priceRange
+        );
+      }
 
-//   function getRating(event) {
-//     setRating(event.target.value);
-//   }
+      // Apply category filter
+      if (category.men || category.women) {
+        filteredProducts = filteredProducts.filter((product) => {
+          if (category.men && product.category === "men") return true;
+          if (category.women && product.category === "women") return true;
+          return false;
+        });
+      }
 
-//   function getShortPrice(event) {
-//     setSortPrice(event.target.value);
-//   }
-//   return { rating, getCategory, getRating, getShortPrice };
-// }
+      // Apply rating filter
+      if (rating) {
+        filteredProducts = filteredProducts.filter(
+          (product) => product.rating >= rating
+        );
+      }
 
-// export default useFilter;
+      // Apply sorting
+      if (sortPrice === "lowToHigh") {
+        filteredProducts.sort((a, b) => a.price - b.price);
+      } else if (sortPrice === "highToLow") {
+        filteredProducts.sort((a, b) => b.price - a.price);
+      }
 
-import { useState } from "react";
+      setProducts(filteredProducts);
+    }
+  }, [data,priceRange, category, rating, sortPrice]);
 
-function useFilter() {
-  const [category, setCategory] = useState([]);
-  const [rating, setRating] = useState(0);
-  const [sortPrice, setSortPrice] = useState("");
+  const handlePriceChange = (e) => {
+    const value = Number(e.target.value);
+    setPriceRange(value);
+    console.log(priceRange);
+  };
 
-  function handleCategoryChange(event) {
-    const value = event.target.value;
-    setCategory((prev) =>
-      prev.includes(value)
-        ? prev.filter((item) => item !== value)
-        : [...prev, value]
-    );
-  }
+  const handleCategoryChange = (e) => {
+    const { value, checked } = e.target;
+    setCategory((prev) => ({
+      ...prev,
+      [value]: checked,
+    }));
+  };
 
-  function handleRatingChange(event) {
-    setRating(event.target.value);
-  }
+  const handleRatingChange = (e) => {
+    const value = Number(e.target.value);
+    setRating(rating === value ? null : value);
+  };
 
-  function handleSortPriceChange(event) {
-    setSortPrice(parseFloat(event.target.value));
-  }
-  function handlerClearFilter() {
-    setCategory();
-    setRating();
-    setSortPrice();
-  }
+  const handleSortPriceChange = (e) => {
+    const value = e.target.value;
+    setSortPrice(sortPrice === value ? null : value);
+  };
+
+  const handlerClearFilter = () => {
+    setPriceRange(0);
+    setCategory({ men: false, women: false });
+    setRating(null);
+    setSortPrice(null);
+  };
 
   return {
+    handlePriceChange,
+    priceRange,
     category,
     rating,
     sortPrice,
+    products: products.length > 0 ? products : data || [],
     handleCategoryChange,
     handleRatingChange,
     handleSortPriceChange,
     handlerClearFilter,
-    setCategory, // in case you need direct access
-    setRating,
-    setSortPrice,
   };
 }
 
