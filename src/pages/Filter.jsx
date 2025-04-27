@@ -9,7 +9,7 @@ const Filter = ({
   handleSortPriceChange,
   handlerClearFilter,
 }) => {
-  console.log(category);
+ 
   return (
     <section className="pt-4">
       <section id="filter" className=" h-100 mb-5" style={{ width: "22rem" }}>

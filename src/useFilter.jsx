@@ -9,7 +9,7 @@ function useFilter(data) {
   const [rating, setRating] = useState(null);
   const [sortPrice, setSortPrice] = useState(null);
   const [products, setProducts] = useState([]);
-  
+
   useEffect(() => {
     if (data) {
       let filteredProducts = [...data];
@@ -46,7 +46,7 @@ function useFilter(data) {
 
       setProducts(filteredProducts);
     }
-  }, [data,priceRange, category, rating, sortPrice]);
+  }, [data, priceRange, category, rating, sortPrice]);
 
   const handlePriceChange = (e) => {
     const value = Number(e.target.value);
