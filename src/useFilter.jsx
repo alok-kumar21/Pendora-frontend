@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 
 function useFilter(data) {
   const [category, setCategory] = useState({
-    men: false,
-    women: false,
+    electronics: false,
+    clothing: false,
   });
   const [priceRange, setPriceRange] = useState(1);
   const [rating, setRating] = useState(null);
@@ -21,12 +21,14 @@ function useFilter(data) {
         );
       }
 
-      // Apply category filter
-      if (category.men || category.women) {
+      // Apply category filter if any category is selected
+      if (category.electronics || category.clothing) {
         filteredProducts = filteredProducts.filter((product) => {
-          if (category.men && product.category === "men") return true;
-          if (category.women && product.category === "women") return true;
-          return false;
+          const productCategory = product.category.name;
+          return (
+            (category.electronics && productCategory === "Electronics") ||
+            (category.clothing && productCategory === "Clothing")
+          );
         });
       }
 
@@ -51,7 +53,6 @@ function useFilter(data) {
   const handlePriceChange = (e) => {
     const value = Number(e.target.value);
     setPriceRange(value);
-    console.log(priceRange);
   };
 
   const handleCategoryChange = (e) => {

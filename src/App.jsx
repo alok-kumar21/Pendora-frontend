@@ -4,7 +4,6 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 import "./index.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import useFilter from "./useFilter";
 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -13,57 +12,17 @@ import ProductDetails from "./pages/ProductDetails";
 import WishList from "./pages/WishList";
 import Cart from "./pages/Cart";
 
-import CartContext from "./context/CartContext";
-import useFetch from "./pages/useFetch";
-import { useEffect, useState } from "react";
+import { CartProvider } from "./context/CartContext";
 
 function App() {
-  const { rating } = useFilter();
-  const { data, loading, error } = useFetch(
-    "https://pendora-backend.vercel.app/api/products"
-  );
-
-  // Initialize cart from localStorage or empty array
-  const [cartItems, setCartItems] = useState([]);
-
-  // save cart to localstorage whenever it changes
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cartItems));
-  }, [cartItems]);
-
-  const addToCart = async (product) => {
-    setCartItems((prevItems) => {
-      const existingItem = prevItems.find((item) => item.id === product._id);
-      if (existingItem) {
-        return prevItems.map((item) =>
-          item._id === product._id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-      return [...prevItems, { ...product, quantity: 1 }];
-    });
-  };
-
-  const removeFromCart = (productId) => {
-    setCartItems(cartItems.filter((item) => item._id !== productId));
-  };
-
   return (
     <>
-      <CartContext.Provider 
-        value={{ productData: data, addToCart, cartItems, removeFromCart }}
-      >
+      <CartProvider>
         <Router>
           <Navbar />
-
-          {/* <WishList /> */}
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route
-              path="/productlisting"
-              element={<ProductListing rating={rating} />}
-            />
+            <Route path="/productlisting" element={<ProductListing />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/wishList" element={<WishList />} />
             <Route
@@ -72,7 +31,7 @@ function App() {
             />
           </Routes>
         </Router>
-      </CartContext.Provider>
+      </CartProvider>
     </>
   );
 }

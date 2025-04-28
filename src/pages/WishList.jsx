@@ -1,10 +1,10 @@
 const WishList = () => {
   return (
     <>
-      <section className="bg-light">
+      <section className="container bg-light mt-3">
         <section>
           <div>
-            <h5 className="text-center">My WishList</h5>
+            <h5 className="text-center">My WishList (1)</h5>
           </div>
           <div className="row">
             <div className="col-md-3">

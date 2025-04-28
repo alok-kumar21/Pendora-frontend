@@ -9,10 +9,9 @@ const Filter = ({
   handleSortPriceChange,
   handlerClearFilter,
 }) => {
- 
   return (
-    <section className="pt-4">
-      <section id="filter" className=" h-100 mb-5" style={{ width: "22rem" }}>
+    <section className="col-md-3 pt-4">
+      <section id="filter" className=" h-100 mb-5">
         <div className="mx-4 d-flex justify-content-between pt-3">
           <h4>Filter</h4>
           <button onClick={handlerClearFilter} className="btn">
@@ -31,11 +30,12 @@ const Filter = ({
             <p>150</p>
             <p>200</p>
           </div>
+
           <input
             className="from-range w-100"
             type="range"
-            min="0"
-            max="150"
+            min="50"
+            max="200"
             step="10"
             onChange={handlePriceChange}
             value={priceRange}
@@ -53,12 +53,12 @@ const Filter = ({
               onChange={handleCategoryChange}
               className="form-check-input"
               type="checkbox"
-              value="men"
-              id="menClothing"
-              checked={category.men}
+              value="electronics"
+              id="electronics"
+              checked={category.electronics}
             />
-            <label className="form-check-label" htmlFor="menClothing">
-              Men Clothing
+            <label className="form-check-label" htmlFor="electronics">
+              Electronics
             </label>
           </div>
           <div className="form-check">
@@ -66,12 +66,12 @@ const Filter = ({
               onChange={handleCategoryChange}
               className="form-check-input"
               type="checkbox"
-              value="women"
-              id="womenClothing"
-              checked={category.women}
+              value="clothing"
+              id="clothing"
+              checked={category.clothing}
             />
-            <label className="form-check-label" htmlFor="womenClothing">
-              Women Clothing
+            <label className="form-check-label" htmlFor="clothing">
+              Clothing
             </label>
           </div>
         </div>
