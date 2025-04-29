@@ -57,9 +57,11 @@ const ProductListing = () => {
                   className="card border-0
                 trsa"
                 >
-                  <span className="position-relative">
-                    <i className="bi bi-bag-heart  bi-danger h2 text-secondary position-absolute top-0 end-0 my-3 me-4"></i>
-                  </span>
+                 
+                    <span className="position-relative ">
+                      <i className="bi bi-bag-heart  bi-danger h2 text-secondary position-absolute top-0 end-0 my-3 me-4"></i>
+                    </span>
+                 
                   <img
                     className="img-fluid "
                     style={{ height: "50%", objectFit: "cover" }}

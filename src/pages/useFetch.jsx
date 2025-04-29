@@ -7,6 +7,7 @@ const useFetch = (url) => {
 
   useEffect(() => {
     setLoading(true);
+
     fetch(url)
       .then((res) => {
         if (!res.ok) {
@@ -23,6 +24,7 @@ const useFetch = (url) => {
       })
       .finally(() => setLoading(false));
   }, [url]);
+
   return { data, loading, error };
 };
 
