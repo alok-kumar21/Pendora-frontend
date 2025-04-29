@@ -1,4 +1,3 @@
-
 import useCartContext from "../context/CartContext";
 import useFetch from "./useFetch";
 const Cart = () => {
@@ -6,7 +5,7 @@ const Cart = () => {
   //   "http://localhost:4001/api/addcart"
   // );
   const { data, loading, error } = useCartContext();
-  console.log(data);
+
   return (
     <>
       <section className="container">
@@ -39,7 +38,7 @@ const Cart = () => {
                   </div>
                   <div className="d-grid mt-3">
                     <button
-                      // onClick={() => removeFromCart(item._id)}
+                      // onClick={() => removeFromCart(item)}
                       className="btn btn-secondary rounded-0"
                     >
                       Remove From Cart

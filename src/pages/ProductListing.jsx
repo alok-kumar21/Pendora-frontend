@@ -4,7 +4,7 @@ import useFilter from "../useFilter";
 import useCartContext from "../context/CartContext";
 
 const ProductListing = () => {
-  const { data, loading, error } = useCartContext();
+  const { data, loading, error, addToCart } = useCartContext();
 
   const {
     handlePriceChange,
@@ -21,7 +21,7 @@ const ProductListing = () => {
 
   return (
     <>
-      <section className="row mt-5">
+      <section className="row ">
         <Filter
           handlePriceChange={handlePriceChange}
           priceRange={priceRange}
@@ -35,7 +35,7 @@ const ProductListing = () => {
         />
 
         {/* Products */}
-        <section className="col-md-8 mt-5 my-3">
+        <section className="col-md-8 mt-5 ">
           {loading && (
             <div className="alert alert-success text-center">Loading...</div>
           )}
@@ -58,10 +58,11 @@ const ProductListing = () => {
                 trsa"
                 >
                   <span className="position-relative">
-                    <i className="bi bi-bag-heart h2 text-secondary position-absolute top-0 end-0 my-3 me-4"></i>
+                    <i className="bi bi-bag-heart  bi-danger h2 text-secondary position-absolute top-0 end-0 my-3 me-4"></i>
                   </span>
                   <img
-                    className="img-fluid w-70"
+                    className="img-fluid "
+                    style={{ height: "50%", objectFit: "cover" }}
                     src={item.images}
                     alt={item.name}
                   />
@@ -74,10 +75,11 @@ const ProductListing = () => {
                     </Link>
                     <div className="d-grid">
                       <button
+                        onClick={() => addToCart(item)}
                         className="btn btn-primary rounded-0"
                         type="button"
                       >
-                        Go To Cart
+                        Add To Cart
                       </button>
                     </div>
                   </div>
