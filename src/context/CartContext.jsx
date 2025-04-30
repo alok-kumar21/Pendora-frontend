@@ -24,6 +24,9 @@ export function CartProvider({ children }) {
       if (!reponse.ok) {
         throw new Error("faild to add cart in db");
       }
+      {
+        alert("Product Added Successfully.");
+      }
     } catch (error) {
       console.log("Error:", error);
     }
@@ -38,12 +41,13 @@ export function CartProvider({ children }) {
       );
       if (response.ok) {
         alert("Data Deleted Successfully");
-       
       }
     } catch (error) {
       console.log("Error:", error);
     }
   }
+
+ 
 
   return (
     <>

@@ -1,10 +1,14 @@
 import useFetch from "./useFetch";
 import useCartContext from "../context/CartContext";
-import { useState } from "react";
+
 const Cart = () => {
   const { removeFromCart } = useCartContext();
   const { data, loading, error } = useFetch("http://localhost:4001/api/cart");
-
+  function calculatePrice() {
+    const [totalPrice, setTotalPrice] = useState();
+    const [discount, setDiscount] = useState();
+    const [deliveryCharge, setDeliveryCharge] = useState();
+  }
   return (
     <>
       <section className="container mt-4">
@@ -38,7 +42,7 @@ const Cart = () => {
                       <span className="text-decoration-line-through text-secondary ms-2">
                         ₹3999
                       </span>
-                      <p>50%off</p>
+                      <p>{item.product.discount}%off</p>
                       <div>
                         <span>Quantity:</span>
                         <button className="border-0 rounded-circle ms-2">
@@ -100,6 +104,7 @@ const Cart = () => {
                   </div>
                 </div>
               </div>
+              
             </div>
           </section>
         )}

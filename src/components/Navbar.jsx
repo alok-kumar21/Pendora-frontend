@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-import CartContext from "../context/CartContext";
-import { useContext } from "react";
+import useCartContext from "../context/CartContext";
 
 const Navbar = () => {
+ 
   return (
     <header style={{ backgroundColor: "#0a192f" }}>
       <nav className="navbar navbar-expand-lg " data-bs-theme="light">
