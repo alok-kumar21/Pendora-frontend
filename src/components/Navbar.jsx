@@ -4,7 +4,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import useCartContext from "../context/CartContext";
 
 const Navbar = () => {
- 
+  const { cartItem } = useCartContext();
   return (
     <header style={{ backgroundColor: "#0a192f" }}>
       <nav className="navbar navbar-expand-lg " data-bs-theme="light">
@@ -82,7 +82,7 @@ const Navbar = () => {
                       className="bi bi-bag h5"
                     ></i>
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      0
+                      {cartItem?.length}
                     </span>
                   </span>
                 </NavLink>

@@ -4,7 +4,7 @@ import useFilter from "../useFilter";
 import useCartContext from "../context/CartContext";
 
 const ProductListing = () => {
-  const { data, loading, error, addToCart } = useCartContext();
+  const { product, loading, error, addToCart } = useCartContext();
 
   const {
     handlePriceChange,
@@ -17,7 +17,7 @@ const ProductListing = () => {
     handleRatingChange,
     handleSortPriceChange,
     handlerClearFilter,
-  } = useFilter(data);
+  } = useFilter(product);
 
   return (
     <>
