@@ -80,11 +80,33 @@ export function CartProvider({ children }) {
     error,
   } = useFetch("http://localhost:4001/api/products");
   //cart api call
-  const { data: cartData } = useFetch("http://localhost:4001/api/cart");
+  const {
+    data: cartData,
+    loading: cloading,
+    error: cerror,
+  } = useFetch("http://localhost:4001/api/cart");
+  //wishlist api call
+  const {
+    data: wishlistData,
+    loading: wishlistLoading,
+    error: wishlistError,
+  } = useFetch("http://localhost:4001/api/wishlist");
 
-  const [cartItem, setCartItem] = useState(cartData);
+  const [cartItem, setCartItem] = useState([]);
+  const [wishlistcart, setwishlistCart] = useState([]);
 
-  // add to cart
+  useEffect(() => {
+    if (wishlistData) {
+      setwishlistCart(wishlistData);
+    }
+  }, [wishlistData]);
+
+  useEffect(() => {
+    if (cartData) {
+      setCartItem(cartData);
+    }
+  }, [cartData]);
+
   async function addToCart(product) {
     try {
       const response = await fetch("http://localhost:4001/api/addcart", {
@@ -98,11 +120,13 @@ export function CartProvider({ children }) {
       if (!response.ok) {
         throw new Error("Failed to add item to cart in database");
       }
+
+      setCartItem((prev) => [...prev, product]);
     } catch (error) {
       console.log("Error adding to cart:", error);
     }
   }
-  // remove from cart
+
   async function removeFromCart(productId) {
     try {
       const response = await fetch(
@@ -113,7 +137,6 @@ export function CartProvider({ children }) {
       );
 
       if (response.ok) {
-        alert("Product Removed Successfully.");
         const updatedCart = cartItem?.filter((item) => item._id !== productId);
 
         setCartItem(updatedCart);
@@ -123,9 +146,40 @@ export function CartProvider({ children }) {
     }
   }
 
+  // add wishlist
+
+  async function addWishlist(product) {
+    try {
+      const response = await fetch("http://localhost:4001/api/wishlist", {
+        method: "POST",
+        body: JSON.stringify({ product }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error("failed to add in wishlist.");
+      }
+      setwishlistCart((prev) => [...prev, product]);
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  }
+
   return (
     <CartContext.Provider
-      value={{ product, loading, error, cartItem, addToCart, removeFromCart }}
+      value={{
+        product,
+        cloading,
+        cerror,
+        cartItem,
+        addToCart,
+        removeFromCart,
+        addWishlist,
+        wishlistcart,
+        wishlistLoading,
+        wishlistError,
+      }}
     >
       {children}
     </CartContext.Provider>

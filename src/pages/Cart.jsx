@@ -1,8 +1,8 @@
 import useCartContext from "../context/CartContext";
 
 const Cart = () => {
-  const { cartItem, loading, error, removeFromCart } = useCartContext();
-  console.log(cartItem);
+  const { cartItem, cloading, cerror, removeFromCart } = useCartContext();
+
   const totalPrice = cartItem?.reduce((acc, curr) => acc + curr.price, 0);
   const totalDiscount = cartItem?.reduce((acc, curr) => acc + curr.discount, 0);
   const devliverCharge = 99;
@@ -12,10 +12,10 @@ const Cart = () => {
   return (
     <>
       <section className="container mt-4">
-        {loading && (
+        {cloading && (
           <div className="alert alert-success text-center">Loading...</div>
         )}
-        {error && (
+        {cerror && (
           <div className="alert alert-Danger text-center">
             Failed to get Cart Data
           </div>
@@ -23,7 +23,7 @@ const Cart = () => {
         {cartItem && (
           <section className="">
             <h5 className="text-center">My Cart ({cartItem?.length})</h5>
-
+            {console.log(cartItem)}
             <div className="row">
               {/* cart  */}
 
@@ -39,9 +39,9 @@ const Cart = () => {
                     <div className=" me-4 py-4">
                       <p>{item.name}</p>
                       <span className="h5">₹{item.price}</span>
-                      <span className="text-decoration-line-through text-secondary ms-2">
+                      {/* <span className="text-decoration-line-through text-secondary ms-2">
                         ₹3999
-                      </span>
+                      </span> */}
                       <p>{item.discount}%off</p>
                       <div>
                         <span>Quantity:</span>

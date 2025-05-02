@@ -1,28 +1,39 @@
+import useCartContext from "../context/CartContext";
+
 const WishList = () => {
+  const { wishlistcart, wishlistLoading, wishlistError } = useCartContext();
+
   return (
     <>
       <section className="container bg-light mt-3">
         <section>
           <div>
-            <h5 className="text-center">My WishList (1)</h5>
+            <h5 className="text-center">
+              My WishList ({wishlistcart?.length})
+            </h5>
           </div>
           <div className="row">
-            <div className="col-md-3">
-              <div className="card border-0 shadow">
-                <img
-                  src="https://placehold.co/600x400?text=Hello+World"
-                  alt=""
-                />
-                <div className="card-body">
-                  <p className="card-text text-center">Men Premium Jacket</p>
-                  <div className="d-grid">
-                    <button className="btn btn-secondary rounded-0">
-                      Add to Cart
-                    </button>
+            {wishlistcart &&
+              wishlistcart?.map((item) => (
+                <div key={item._id} className="col-md-3">
+                  <div className="card border-0 shadow">
+                    <img
+                      style={{ height: "50%", objectFit: "cover" }}
+                      src={item.images}
+                      alt=""
+                    />
+                    <div className="card-body">
+                      <p className="card-text text-center">{item.name}</p>
+                      <h5 className="card-text text-center">₹{item.price}</h5>
+                      <div className="d-grid">
+                        <button className="btn btn-secondary rounded-0">
+                          Move to Cart
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              ))}
           </div>
         </section>
       </section>
