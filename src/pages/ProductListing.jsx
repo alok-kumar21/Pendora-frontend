@@ -4,7 +4,7 @@ import useFilter from "../useFilter";
 import useCartContext from "../context/CartContext";
 
 const ProductListing = () => {
-  const { product, loading, error, addToCart, addWishlist } = useCartContext();
+  const { product, loading, error, addToCart, addToWishlist } = useCartContext();
 
   const {
     handlePriceChange,
@@ -60,7 +60,7 @@ const ProductListing = () => {
                 trsa"
                 >
                   <span
-                    onClick={() => addWishlist(item)}
+                    onClick={() => addToWishlist(item)}
                     className="position-relative "
                   >
                     <i className="bi bi-bag-heart  bi-danger h2 text-secondary position-absolute top-0 end-0 my-3 me-4"></i>
