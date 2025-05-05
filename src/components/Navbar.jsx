@@ -4,7 +4,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import useCartContext from "../context/CartContext";
 
 const Navbar = () => {
-  const { cartItem, wishlistcart } = useCartContext();
+  const { cartItem, wishlist } = useCartContext();
   return (
     <header style={{ backgroundColor: "#0a192f" }}>
       <nav className="navbar navbar-expand-lg " data-bs-theme="light">
@@ -69,7 +69,7 @@ const Navbar = () => {
                       className="bi bi-heart h5"
                     ></i>
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      {wishlistcart?.length}
+                      {wishlist?.length}
                     </span>
                   </span>
                 </NavLink>
@@ -82,7 +82,7 @@ const Navbar = () => {
                       className="bi bi-bag h5"
                     ></i>
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      {cartItem?.length}
+                      {cartItem?.length === 1?0:cartItem?.length-1}
                     </span>
                   </span>
                 </NavLink>
