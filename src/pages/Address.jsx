@@ -1,141 +1,269 @@
 import useCartContext from "../context/CartContext";
-import WishList from "./WishList";
+import { useEffect, useState } from "react";
 
 const Address = () => {
   const { address, addressLoading, addressError } = useCartContext();
-  console.log(address);
+  const [addresses,setAddresses] = useState([])
+  const [formData, setFormData] = useState({
+    name: "",
+    mobilenumber: "",
+    pincode: "",
+    locality: "",
+    address: "",
+    city: "",
+    state: "",
+    landmark: "",
+  });
+console.log(addresses)
+  function handleAddressChange(event) {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  }
+
+  async function handleFormSubmit(event) {
+    event.preventDefault()
+    try{
+      const addingData = await fetch(`http://localhost:4001/api/v1/address`,{
+        method:"POST",
+        headers:{
+          'Content-Type':"application/json"
+        },
+        body:JSON.stringify(formData)
+
+      })
+      if(!addingData.ok){
+        throw new Error("Failed to add Address")
+      }else{
+        setFormData("")
+      }
+
+    }catch(error){
+      console.log("Error:",error)
+    }
+  }
+
+  // delete address
+  useEffect(()=>{
+    if(address){
+      setAddresses(address)
+    }
+  },[address])
+ async function handleDeleteAddress(addressId){
+  try{
+    const deletedAddress = await fetch(`http://localhost:4001/api/v3/address/${addressId}`,{
+      method:"DELETE"
+    })
+    if(!deletedAddress.ok){
+      throw new Error("Failed to Delete Address.")
+    }
+
+      setAddresses(addresses?.find(item=> item._id !== addressId))
+    
+    
+
+  }catch(error){
+    console.log("Error",error)
+  }
+
+  }
+  console.log(addresses)
+
+  if (addressLoading) {
+    return (
+      <div className="alert alert-success text-center">
+        Loading addresses...
+      </div>
+    );
+  }
+
+  if (addressError) {
+    return (
+      <div className="alert alert-danger text-center">
+        Failed to load addresses
+      </div>
+    );
+  }
+
   return (
-    <>
-      <section className="container mt-5 mb-5">
-        <div className="my-5">
-          <h5 className="text-center">Address</h5>
-        </div>
-        <div className="accordion " id="accordionExample">
-          <div className="accordion-item">
-            <h2 className="accordion-header">
-              <button
-                className="accordion-button bg-primary text-white"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseOne"
-                aria-expanded="true"
-                aria-controls="collapseOne"
-              >
-                Delivery Address
-              </button>
-            </h2>
-            <div
-              id="collapseOne"
-              className="accordion-collapse collapse show"
-              data-bs-parent="#accordionExample"
-            >
-              <div className="accordion-body">
-                <ul className="nav">
-                  <li className="nav-item">
-                    {address?.map((item) => (
-                      <div class="form-check">
-                        <input
-                          className="form-check-input"
-                          type="radio"
-                          name="radioDefault"
-                          id="radioDefault1"
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="radioDefault1"
-                        >
-                          <span>
-                            <strong>Saket puri colony - 224001</strong>{" "}
-                          </span>
-                          <p>City: Ayodhya</p>
-                        </label>
+    <section className="container mt-5 mb-5">
+      <div className="my-5">
+        <h3 className="text-center">Manage Addresses</h3>
+      </div>
+
+      {/* Address Selection */}
+      {addresses?.length>0?(
+
+      <div className="card mb-4">
+        <div className="card-header bg-primary text-white"></div>
+        <div className="card-body">
+          <div className="list-group">
+            {addresses?.map((item) => (
+              <div key={item._id} className="list-group-item">
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name="deliveryAddress"
+                  
+                  
+                    onChange={() => handleAddressSelection(item._id)}
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor={``}
+                  >
+                    <div className="d-flex justify-content-between align-items-start">
+                      <div>
+                        <strong>{item.name}</strong>
+                        <p className="mb-1">
+                          {item.address}, {item.locality}
+                        </p>
+                        <p className="mb-1">
+                          {item.city}, {item.state} - {item.pincode}
+                        </p>
+                        <p className="mb-0">Landmark: {item.landmark}</p>
+                        <p className="mb-0">Mobile: {item.mobilenumber}</p>
                       </div>
-                    ))}
-                  </li>
-                </ul>
+                      <div>
+                        <button
+                          onClick={() => handleEditAddress(item)}
+                          className="btn btn-sm btn-outline-primary me-2"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => handleDeleteAddress(item._id)}
+                          className="btn btn-sm btn-outline-danger"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  </label>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
         </div>
-        <div className="accordion " id="accordionExample">
-          <div className="accordion-item">
-            <h2 className="accordion-header">
-              <button
-                className="accordion-button bg-primary text-white"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseOne"
-                aria-expanded="true"
-                aria-controls="collapseOne"
-              >
-                + add new Address
-              </button>
-            </h2>
-            <div
-              id="collapseOne"
-              className="accordion-collapse collapse "
-              data-bs-parent="#accordionExample"
-            >
-              <div className="accordion-body">
-                <form action="">
-                  <input
-                    className="form-control"
-                    type="text"
-                    placeholder="Name"
-                  />
-                  <br />
-                  <input
-                    className="form-control"
-                    type="number"
-                    placeholder="Mobile Number"
-                  />
-                  <br />
-                  <input
-                    className="form-control"
-                    type="number"
-                    placeholder="Pincode"
-                  />
-                  <br />
-                  <input
-                    className="form-control"
-                    type="text"
-                    placeholder="Locality"
-                  />
-                  <br />
-                  <input
-                    className="form-control"
-                    type="text"
-                    placeholder="Address"
-                  />
-                  <br />
-                  <input
-                    className="form-control"
-                    type="text"
-                    placeholder="City"
-                  />
-                  <br />
-                  <input
-                    className="form-control"
-                    type="text"
-                    placeholder="State"
-                  />
-                  <br />
-                  <input
-                    className="form-control"
-                    type="text"
-                    placeholder="Landmark"
-                  />
-                  <br />
-                  <button className="btn btn-primary">
-                    Save & Deliver Here
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
+      </div>
+      ):(<div>
+        <p className="text-center">Address is Empty</p>
+      </div>)}
+
+      {/* Add/Edit Address Form */}
+      <div className="card">
+        <div className="card-header bg-primary text-white">
+          
         </div>
-      </section>
-    </>
+        <div className="card-body">
+          <form onSubmit={handleFormSubmit}>
+            <div className="row g-3">
+              <div className="col-md-6">
+                <label className="form-label">Full Name</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  name="name"
+                  placeholder="Enter your full name"
+                  value={formData.name}
+                  onChange={handleAddressChange}
+                  required
+                />
+              </div>
+              <div className="col-md-6">
+                <label className="form-label">Mobile Number</label>
+                <input
+                  className="form-control"
+                  type="tel"
+                  name="mobilenumber"
+                  placeholder="Enter 10-digit mobile number"
+                  value={formData.mobilenumber}
+                  onChange={handleAddressChange}
+                  required
+                  minLength="10"
+                  maxLength="10"
+                />
+              </div>
+              <div className="col-md-4">
+                <label className="form-label">Pincode</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  name="pincode"
+                  placeholder="Enter pincode"
+                  value={formData.pincode}
+                  onChange={handleAddressChange}
+                  required
+                />
+              </div>
+              <div className="col-md-8">
+                <label className="form-label">Locality</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  name="locality"
+                  placeholder="Enter locality"
+                  value={formData.locality}
+                  onChange={handleAddressChange}
+                  required
+                />
+              </div>
+              <div className="col-12">
+                <label className="form-label">Full Address</label>
+                <textarea
+                  className="form-control"
+                  name="address"
+                  placeholder="Enter full address"
+                  value={formData.address}
+                  onChange={handleAddressChange}
+                  required
+                  rows="2"
+                />
+              </div>
+              <div className="col-md-6">
+                <label className="form-label">City</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  name="city"
+                  placeholder="Enter city"
+                  value={formData.city}
+                  onChange={handleAddressChange}
+                  required
+                />
+              </div>
+              <div className="col-md-6">
+                <label className="form-label">State</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  name="state"
+                  placeholder="Enter state"
+                  value={formData.state}
+                  onChange={handleAddressChange}
+                  required
+                />
+              </div>
+              <div className="col-12">
+                <label className="form-label">Landmark (Optional)</label>
+                <input
+                  className="form-control"
+                  type="text"
+                  name="landmark"
+                  placeholder="Enter nearby landmark"
+                  value={formData.landmark}
+                  onChange={handleAddressChange}
+                />
+              </div>
+            <button type="submit" className="btn btn-primary">Save and Delivered</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
   );
 };
 

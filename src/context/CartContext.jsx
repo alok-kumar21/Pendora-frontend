@@ -53,9 +53,9 @@ export function CartProvider({ children }) {
   async function addToCart(product) {
     try {
       // Check if product already exists in cart
-      console.log(product)
+     
       const existingItem = cartItem.find(item => item._id === product._id);
-      console.log(existingItem)
+     
       if (existingItem) {
         // If exists, update quantity
         const response = await fetch(`http://localhost:4001/api/cart/update/${existingItem._id}`, {
