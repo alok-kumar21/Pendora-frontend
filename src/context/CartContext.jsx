@@ -98,7 +98,7 @@ export function CartProvider({ children }) {
   async function updateCartItemQuantity(cartItemId, newQuantity) {
     try {
       if (newQuantity < 1) return;
-     console.log(cartItemId)
+    
       const response = await fetch(`http://localhost:4001/api/cart/update/${cartItemId}`, {
         method: "POST",
         headers: {

@@ -1,9 +1,11 @@
 import useCartContext from "../context/CartContext";
 import { useEffect, useState } from "react";
+import useFetch from "./useFetch";
 
 const Address = () => {
   const { address, addressLoading, addressError } = useCartContext();
-  const [addresses,setAddresses] = useState([])
+  const [addresses, setAddresses] = useState([]);
+  const [selectedAddress, setSelectedAddress] = useState();
   const [formData, setFormData] = useState({
     name: "",
     mobilenumber: "",
@@ -14,7 +16,13 @@ const Address = () => {
     state: "",
     landmark: "",
   });
-console.log(addresses)
+
+  useEffect(() => {
+    if (address) {
+      setAddresses(address);
+    }
+  }, [address]);
+
   function handleAddressChange(event) {
     const { name, value } = event.target;
     setFormData({
@@ -24,52 +32,93 @@ console.log(addresses)
   }
 
   async function handleFormSubmit(event) {
-    event.preventDefault()
-    try{
-      const addingData = await fetch(`http://localhost:4001/api/v1/address`,{
-        method:"POST",
-        headers:{
-          'Content-Type':"application/json"
+    event.preventDefault();
+
+    try {
+      const addingData = await fetch(`http://localhost:4001/api/v1/address`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        body:JSON.stringify(formData)
+        body: JSON.stringify(formData),
+      });
 
-      })
-      if(!addingData.ok){
-        throw new Error("Failed to add Address")
-      }else{
-        setFormData("")
+      if (!addingData.ok) {
+        throw new Error("Failed to add Address");
+      } else {
+        setFormData({
+          name: "",
+          mobilenumber: "",
+          pincode: "",
+          locality: "",
+          address: "",
+          city: "",
+          state: "",
+          landmark: "",
+        });
       }
-
-    }catch(error){
-      console.log("Error:",error)
+    } catch (error) {
+      console.log("Error:", error);
     }
   }
 
   // delete address
-  useEffect(()=>{
-    if(address){
-      setAddresses(address)
-    }
-  },[address])
- async function handleDeleteAddress(addressId){
-  try{
-    const deletedAddress = await fetch(`http://localhost:4001/api/v3/address/${addressId}`,{
-      method:"DELETE"
-    })
-    if(!deletedAddress.ok){
-      throw new Error("Failed to Delete Address.")
-    }
 
-      setAddresses(addresses?.find(item=> item._id !== addressId))
-    
-    
-
-  }catch(error){
-    console.log("Error",error)
+  async function handleDeleteAddress(addressId) {
+    try {
+      const deletedAddress = await fetch(
+        `http://localhost:4001/api/v3/address/${addressId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (!deletedAddress.ok) {
+        throw new Error("Failed to Delete Address.");
+      }
+      //refresh address data
+      setAddresses(addresses?.filter((item) => item._id !== addressId));
+    } catch (error) {
+      console.log("Error", error);
+    }
   }
 
+  //  Update Address
+  async function handleEditAddress(updateAd) {
+    setFormData({
+      name: updateAd.name,
+      mobilenumber: updateAd.mobilenumber,
+      pincode: updateAd.pincode,
+      locality: updateAd.locality,
+      address: updateAd.address,
+      city: updateAd.city,
+      state: updateAd.state,
+      landmark: updateAd.landmark,
+    });
+    try {
+      const newUpdateData = await fetch(
+        `http://localhost:4001/api/v3/address/${updateAd._id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+      if (!newUpdateData.ok) {
+        throw new Error("Failed to update Data");
+      } else {
+      }
+    } catch (error) {
+      console.log("Error", error);
+    }
   }
-  console.log(addresses)
+
+  // Selected Address for checkout
+
+  function handleAddressSelection(checkoutAddressId) {
+    setSelectedAddress(checkoutAddressId);
+  }
 
   if (addressLoading) {
     return (
@@ -94,70 +143,64 @@ console.log(addresses)
       </div>
 
       {/* Address Selection */}
-      {addresses?.length>0?(
-
-      <div className="card mb-4">
-        <div className="card-header bg-primary text-white"></div>
-        <div className="card-body">
-          <div className="list-group">
-            {addresses?.map((item) => (
-              <div key={item._id} className="list-group-item">
-                <div className="form-check">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="deliveryAddress"
-                  
-                  
-                    onChange={() => handleAddressSelection(item._id)}
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor={``}
-                  >
-                    <div className="d-flex justify-content-between align-items-start">
-                      <div>
-                        <strong>{item.name}</strong>
-                        <p className="mb-1">
-                          {item.address}, {item.locality}
-                        </p>
-                        <p className="mb-1">
-                          {item.city}, {item.state} - {item.pincode}
-                        </p>
-                        <p className="mb-0">Landmark: {item.landmark}</p>
-                        <p className="mb-0">Mobile: {item.mobilenumber}</p>
+      {addresses?.length > 0 ? (
+        <div className="card mb-4">
+          <div className="card-header bg-primary text-white"></div>
+          <div className="card-body">
+            <div className="list-group">
+              {addresses?.map((item) => (
+                <div key={item._id} className="list-group-item">
+                  <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="deliveryAddress"
+                      onChange={() => handleAddressSelection(item._id)}
+                    />
+                    <label className="form-check-label" htmlFor={``}>
+                      <div className="d-flex justify-content-between align-items-start">
+                        <div>
+                          <strong>{item.name}</strong>
+                          <p className="mb-1">
+                            {item.address}, {item.locality}
+                          </p>
+                          <p className="mb-1">
+                            {item.city}, {item.state} - {item.pincode}
+                          </p>
+                          <p className="mb-0">Landmark: {item.landmark}</p>
+                          <p className="mb-0">Mobile: {item.mobilenumber}</p>
+                        </div>
+                        <div>
+                          <button
+                            onClick={() => handleEditAddress(item)}
+                            className="btn btn-sm btn-outline-primary me-2"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDeleteAddress(item._id)}
+                            className="btn btn-sm btn-outline-danger"
+                          >
+                            Delete
+                          </button>
+                        </div>
                       </div>
-                      <div>
-                        <button
-                          onClick={() => handleEditAddress(item)}
-                          className="btn btn-sm btn-outline-primary me-2"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => handleDeleteAddress(item._id)}
-                          className="btn btn-sm btn-outline-danger"
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    </div>
-                  </label>
+                    </label>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-      ):(<div>
-        <p className="text-center">Address is Empty</p>
-      </div>)}
+      ) : (
+        <div>
+          <p className="text-center">Address is Empty</p>
+        </div>
+      )}
 
       {/* Add/Edit Address Form */}
       <div className="card">
-        <div className="card-header bg-primary text-white">
-          
-        </div>
+        <div className="card-header bg-primary text-white"></div>
         <div className="card-body">
           <form onSubmit={handleFormSubmit}>
             <div className="row g-3">
@@ -258,7 +301,9 @@ console.log(addresses)
                   onChange={handleAddressChange}
                 />
               </div>
-            <button type="submit" className="btn btn-primary">Save and Delivered</button>
+              <button type="submit" className="btn btn-primary">
+                Save and Delivered
+              </button>
             </div>
           </form>
         </div>
