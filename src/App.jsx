@@ -11,7 +11,8 @@ import ProductListing from "./pages/ProductListing";
 import ProductDetails from "./pages/ProductDetails";
 import WishList from "./pages/WishList";
 import Cart from "./pages/Cart";
-import Address from "./pages/Address"
+import Address from "./pages/Address";
+import OrderSummary from "./pages/OrderSummary";
 
 import { CartProvider } from "./context/CartContext";
 
@@ -30,7 +31,8 @@ function App() {
               path="/api/productdetails/:productId"
               element={<ProductDetails />}
             />
-           <Route path="/address"element={<Address/>}/>
+            <Route path="/address" element={<Address />} />
+            <Route path="/ordersummary" element={<OrderSummary />} />
           </Routes>
         </Router>
       </CartProvider>
