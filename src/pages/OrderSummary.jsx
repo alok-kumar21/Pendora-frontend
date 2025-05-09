@@ -1,23 +1,33 @@
+import { useState } from "react";
+import useCartContext from "../context/CartContext";
+
 const OrderSummary = () => {
+  const { cartItem, address, selectedAddress } = useCartContext();
+  const addressDetails = address?.find(
+    (address) => address._id === selectedAddress
+  );
+  console.log(cartItem);
   return (
     <>
       <section className="container">
         <section className="row">
           <div className="col-md-6 mt-4">
-            <div className="card">
-              <div className="card-header">
-                <h5>Delivery Address</h5>
+            {addressDetails && (
+              <div className="card">
+                <div className="card-header">
+                  <h5>Delivery Address</h5>
+                </div>
+                <div className="card-body text-secondary">
+                  <p>{addressDetails.name}</p>
+                  <p>Address: {addressDetails.address} </p>
+                  <p>city: {addressDetails.city}</p>
+                  <p>State: {addressDetails.state}</p>
+                  <p>Mobile Number: {addressDetails.mobilenumber}</p>
+                  <p>Pincode: {addressDetails.pincode}</p>
+                  <p>Landmark: {addressDetails.landmark}</p>
+                </div>
               </div>
-              <card className="card-body">
-                <p>Alok kumar</p>
-                <p>Address: Om Puram colony </p>
-                <p>city: aayodhya</p>
-                <p>State: Uttar Pradesh</p>
-                <p>Mobile Number: 090909099</p>
-                <p>Pincode: 224001</p>
-                <p>Landmark: new Railway Station</p>
-              </card>
-            </div>
+            )}
             <div className="card mt-4">
               <div className="card-header">
                 <h5>Order Products</h5>
@@ -25,10 +35,13 @@ const OrderSummary = () => {
 
               <div className="list-group">
                 <div className="list-group-item">
-                  <img src="..." alt="img-here" />
-                  <p>Name: Jeans</p>
-                  <p>Quantity: 1</p>
-                  <p>Price: 9090</p>
+                  {cartItem?.map((item) => (
+                    <div key={item._id} className="row">
+                      <div className="col-md-3">
+                        <img src={item.product.images} alt="" />
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

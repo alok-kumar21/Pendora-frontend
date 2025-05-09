@@ -3,10 +3,15 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const Address = () => {
-  const { address, addressLoading, addressError } = useCartContext();
+  const {
+    address,
+    addressLoading,
+    addressError,
+    handleAddressSelection,
+    selectedAddress,
+  } = useCartContext();
   const [addresses, setAddresses] = useState([]);
   const [editingId, setEditingId] = useState(null);
-  const [selectedAddress, setSelectedAddress] = useState();
   const [formData, setFormData] = useState({
     name: "",
     mobilenumber: "",
@@ -108,12 +113,6 @@ const Address = () => {
     setEditingId(updateAd._id);
   }
 
-  // Selected Address for checkout
-
-  function handleAddressSelection(checkoutAddressId) {
-    setSelectedAddress(checkoutAddressId);
-  }
-
   if (addressLoading) {
     return (
       <div className="alert alert-success text-center">
@@ -203,11 +202,11 @@ const Address = () => {
 
       {/* Add/Edit Address Form */}
 
-      <div class="accordion " id="accordionExample">
-        <div class="accordion-item ">
-          <h2 class="accordion-header">
+      <div className="accordion " id="accordionExample">
+        <div className="accordion-item ">
+          <h2 className="accordion-header">
             <button
-              class="accordion-button bg-light"
+              className="accordion-button bg-light"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#collapseOne"
@@ -219,10 +218,10 @@ const Address = () => {
           </h2>
           <div
             id="collapseOne"
-            class="accordion-collapse collapse "
+            className="accordion-collapse collapse "
             data-bs-parent="#accordionExample"
           >
-            <div class="accordion-body">
+            <div className="accordion-body">
               <div className="card">
                 <div className="card-header bg-primary text-white"></div>
                 <div className="card-body">
