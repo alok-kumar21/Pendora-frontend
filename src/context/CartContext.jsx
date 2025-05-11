@@ -54,10 +54,13 @@ export function CartProvider({ children }) {
   }, [wishlistData]);
 
   async function addToCart(product) {
+    console.log(cartItem);
     try {
       // Check if product already exists in cart
 
-      const existingItem = cartItem.find((item) => item._id === product._id);
+      const existingItem = cartItem.find(
+        (item) => item.product._id === product._id
+      );
 
       if (existingItem) {
         // If exists, update quantity
@@ -205,6 +208,25 @@ export function CartProvider({ children }) {
     setSelectedAddress(checkoutAddressId);
   }
 
+  // totalPrice
+  const totalPrice = cartItem.reduce(
+    (acc, curr) => acc + (curr?.product?.price || 0) * (curr?.quantity || 0),
+    0
+  );
+
+  // discount price
+  const totalDiscount = cartItem.reduce(
+    (acc, curr) => acc + (curr?.product?.discount || 0),
+    0
+  );
+
+  const deliveryCharge = 99;
+  const discountAmount = totalPrice * (totalDiscount / 100);
+  const finalPrice = totalPrice - discountAmount;
+  const finalAmount =
+    finalPrice < 500 ? finalPrice + deliveryCharge : finalPrice;
+  const saveAmount = discountAmount;
+
   return (
     <CartContext.Provider
       value={{
@@ -215,6 +237,7 @@ export function CartProvider({ children }) {
         cloading,
         cerror,
         addToCart,
+
         updateCartItemQuantity,
         removeFromCart,
         wishlist,
@@ -228,6 +251,12 @@ export function CartProvider({ children }) {
         addressError,
         handleAddressSelection,
         selectedAddress,
+        totalPrice,
+        totalDiscount,
+        deliveryCharge,
+        finalAmount,
+        finalPrice,
+        saveAmount,
       }}
     >
       {children}

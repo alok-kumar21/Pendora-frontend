@@ -13,6 +13,8 @@ import WishList from "./pages/WishList";
 import Cart from "./pages/Cart";
 import Address from "./pages/Address";
 import OrderSummary from "./pages/OrderSummary";
+import Profile from "./pages/Profile";
+import OrderHistory from "./pages/OrderHistory";
 
 import { CartProvider } from "./context/CartContext";
 
@@ -33,6 +35,8 @@ function App() {
             />
             <Route path="/address" element={<Address />} />
             <Route path="/ordersummary" element={<OrderSummary />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/orderhistory" element={<OrderHistory />} />
           </Routes>
         </Router>
       </CartProvider>

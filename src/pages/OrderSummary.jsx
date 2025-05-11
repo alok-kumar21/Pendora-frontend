@@ -1,15 +1,23 @@
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import useCartContext from "../context/CartContext";
 
 const OrderSummary = () => {
-  const { cartItem, address, selectedAddress } = useCartContext();
+  const {
+    cartItem,
+    address,
+    selectedAddress,
+    totalPrice,
+    finalAmount,
+
+    deliveryCharge,
+  } = useCartContext();
   const addressDetails = address?.find(
     (address) => address._id === selectedAddress
   );
 
   return (
     <>
-      <section className="container">
+      <section className="container mb-5">
         <div>
           <h5 className="m-4 text-center">Order Summary</h5>
         </div>
@@ -84,17 +92,25 @@ const OrderSummary = () => {
                 <h5>Price Details</h5>
               </div>
               <div className="card-body">
-                <span>Price (2 item)</span>
-                <span>44545</span>
+                <div className="d-flex justify-content-between">
+                  <span>Price ({cartItem?.length || 0} item)</span>
+                  <span>₹{totalPrice.toFixed(2)}</span>
+                </div>
+
+                <div className="d-flex justify-content-between">
+                  <span>Delivery Charge</span>
+                  <span>₹{deliveryCharge}</span>
+                </div>
+
+                <div className="d-flex justify-content-between">
+                  <span>Total Amount</span>
+                  <span>₹{finalAmount.toFixed(2)}</span>
+                </div>
+
                 <br />
-                <span>Delivery Charge</span>
-                <span>99</span>
-                <br />
-                <span>Total Amount</span>
-                <span>4546556</span>
-                <br />
-                <br />
-                <button className="btn btn-primary">Place Order</button>
+                <Link to="/profile" className="btn btn-primary">
+                  Place Order
+                </Link>
               </div>
             </div>
           </div>

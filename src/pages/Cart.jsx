@@ -8,31 +8,13 @@ const Cart = () => {
     removeFromCart,
     addToWishlist,
     updateCartItemQuantity,
+    totalPrice,
+    totalDiscount,
+    deliveryCharge,
+    finalAmount,
+    saveAmount,
+    finalPrice,
   } = useCartContext();
-
-
-  // // Safe calculations with null checks
-  // const totalItems = cartItem.reduce(
-  //   (acc, curr) => acc + (curr?.quantity || 0),
-  //   0
-  // );
-
-  const totalPrice = cartItem.reduce(
-    (acc, curr) => acc + (curr?.product?.price || 0) * (curr?.quantity || 0),
-    0
-  );
-
-  const totalDiscount = cartItem.reduce(
-    (acc, curr) => acc + (curr?.product?.discount || 0),
-    0
-  );
-
-  const deliveryCharge = 99;
-  const discountAmount = totalPrice * (totalDiscount / 100);
-  const finalPrice = totalPrice - discountAmount;
-  const finalAmount =
-    finalPrice < 500 ? finalPrice + deliveryCharge : finalPrice;
-  const saveAmount = discountAmount;
 
   const handleQuantityChange = async (item, newQuantity) => {
     if (newQuantity < 1 || !item?._id) return;

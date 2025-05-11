@@ -82,12 +82,21 @@ const Navbar = () => {
                       className="bi bi-bag h5"
                     ></i>
                     <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                      {cartItem?.length === 1?0:cartItem?.length-1}
+                      {cartItem?.length}
                     </span>
                   </span>
                 </NavLink>
               </li>
             </ul>
+
+            <NavLink to="/profile" className="nav-link ms-5">
+              <span type="button" className="position-relative">
+                <i
+                  style={{ color: "#64ffda" }}
+                  className="bi bi-person-circle h4"
+                ></i>
+              </span>
+            </NavLink>
           </div>
         </div>
       </nav>

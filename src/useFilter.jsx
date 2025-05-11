@@ -6,7 +6,7 @@ function useFilter(data) {
     clothing: false,
   });
   const [priceRange, setPriceRange] = useState(1);
-  const [rating, setRating] = useState(null);
+  const [rating, setRating] = useState();
   const [sortPrice, setSortPrice] = useState(null);
   const [products, setProducts] = useState([]);
 
@@ -35,7 +35,7 @@ function useFilter(data) {
       // Apply rating filter
       if (rating) {
         filteredProducts = filteredProducts.filter(
-          (product) => product.rating >= rating
+          (product) => product.rating >= parseFloat(rating)
         );
       }
 
@@ -65,7 +65,7 @@ function useFilter(data) {
 
   const handleRatingChange = (e) => {
     const value = Number(e.target.value);
-    setRating(rating === value ? null : value);
+    setRating(value);
   };
 
   const handleSortPriceChange = (e) => {
