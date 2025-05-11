@@ -6,10 +6,13 @@ const OrderSummary = () => {
   const addressDetails = address?.find(
     (address) => address._id === selectedAddress
   );
-  console.log(cartItem);
+
   return (
     <>
       <section className="container">
+        <div>
+          <h5 className="m-4 text-center">Order Summary</h5>
+        </div>
         <section className="row">
           <div className="col-md-6 mt-4">
             {addressDetails && (
@@ -18,13 +21,26 @@ const OrderSummary = () => {
                   <h5>Delivery Address</h5>
                 </div>
                 <div className="card-body text-secondary">
-                  <p>{addressDetails.name}</p>
-                  <p>Address: {addressDetails.address} </p>
-                  <p>city: {addressDetails.city}</p>
-                  <p>State: {addressDetails.state}</p>
-                  <p>Mobile Number: {addressDetails.mobilenumber}</p>
-                  <p>Pincode: {addressDetails.pincode}</p>
-                  <p>Landmark: {addressDetails.landmark}</p>
+                  <h5>{addressDetails.name}</h5>
+                  <p>
+                    <strong>Address:</strong> {addressDetails.address}{" "}
+                  </p>
+                  <p>
+                    <strong>city:</strong> {addressDetails.city}
+                  </p>
+                  <p>
+                    <strong>State:</strong> {addressDetails.state}
+                  </p>
+                  <p>
+                    <strong>Mobile Number:</strong>{" "}
+                    {addressDetails.mobilenumber}
+                  </p>
+                  <p>
+                    <strong>Pincode:</strong> {addressDetails.pincode}
+                  </p>
+                  <p>
+                    <strong>Landmark:</strong> {addressDetails.landmark}
+                  </p>
                 </div>
               </div>
             )}
@@ -37,9 +53,25 @@ const OrderSummary = () => {
                 <div className="list-group-item">
                   {cartItem?.map((item) => (
                     <div key={item._id} className="row">
-                      <div className="col-md-3">
-                        <img src={item.product.images} alt="" />
+                      <div className="col">
+                        <img
+                          src={item.product.images}
+                          alt="img-here w-25"
+                          className="img-fluid"
+                          style={{ width: "30%", objectFit: "cover" }}
+                        />
                       </div>
+                      <div className="col text-secondary">
+                        <p>{item.product.name}</p>
+
+                        <p>
+                          <strong>Quantity:</strong> {item.quantity}
+                        </p>
+                        <p>
+                          <strong>Price: ₹</strong> {item.product.price}
+                        </p>
+                      </div>
+                      <hr />
                     </div>
                   ))}
                 </div>

@@ -2,7 +2,7 @@ import useCartContext from "../context/CartContext";
 import { NavLink } from "react-router-dom";
 const Cart = () => {
   const {
-    cartItem = [], // Default to empty array
+    cartItem = [],
     cloading,
     cerror,
     removeFromCart,
@@ -10,11 +10,12 @@ const Cart = () => {
     updateCartItemQuantity,
   } = useCartContext();
 
-  // Safe calculations with null checks
-  const totalItems = cartItem.reduce(
-    (acc, curr) => acc + (curr?.quantity || 0),
-    0
-  );
+
+  // // Safe calculations with null checks
+  // const totalItems = cartItem.reduce(
+  //   (acc, curr) => acc + (curr?.quantity || 0),
+  //   0
+  // );
 
   const totalPrice = cartItem.reduce(
     (acc, curr) => acc + (curr?.product?.price || 0) * (curr?.quantity || 0),
