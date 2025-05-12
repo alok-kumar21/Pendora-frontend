@@ -11,6 +11,7 @@ const OrderSummary = () => {
 
     deliveryCharge,
   } = useCartContext();
+  
   const addressDetails = address?.find(
     (address) => address._id === selectedAddress
   );
@@ -108,9 +109,7 @@ const OrderSummary = () => {
                 </div>
 
                 <br />
-                <Link to="/profile" className="btn btn-primary">
-                  Place Order
-                </Link>
+                <Link className="btn btn-primary">Checkout</Link>
               </div>
             </div>
           </div>

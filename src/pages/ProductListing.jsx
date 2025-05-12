@@ -4,7 +4,8 @@ import useFilter from "../useFilter";
 import useCartContext from "../context/CartContext";
 
 const ProductListing = () => {
-  const { product, loading, error, addToCart, addToWishlist } = useCartContext();
+  const { product, loading, error, addToCart, addToWishlist } =
+    useCartContext();
 
   const {
     handlePriceChange,
@@ -13,7 +14,7 @@ const ProductListing = () => {
     rating,
     sortPrice,
     products,
-    
+
     handleCategoryChange,
     handleRatingChange,
     handleSortPriceChange,
@@ -93,7 +94,6 @@ const ProductListing = () => {
               </div>
             ))}
           </div>
-
         </section>
       </section>
     </>

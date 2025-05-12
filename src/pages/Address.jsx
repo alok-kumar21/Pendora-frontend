@@ -188,7 +188,7 @@ const Address = () => {
                   type="submit"
                   className="btn btn-primary mt-3"
                 >
-                  Checkout
+                  Continue
                 </NavLink>
               )}
             </div>

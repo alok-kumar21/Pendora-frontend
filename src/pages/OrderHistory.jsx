@@ -2,7 +2,7 @@ import useCartContext from "../context/CartContext";
 
 const OrderHistory = () => {
   const { cartItem } = useCartContext();
-  console.log(cartItem);
+
   return (
     <>
       <section className="container mt-5 ">

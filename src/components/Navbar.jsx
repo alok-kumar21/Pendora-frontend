@@ -3,8 +3,12 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 import useCartContext from "../context/CartContext";
 
+import useFilter from "../useFilter";
+
 const Navbar = () => {
   const { cartItem, wishlist } = useCartContext();
+  const {handleSearchChange } = useFilter();
+
   return (
     <header style={{ backgroundColor: "#0a192f" }}>
       <nav className="navbar navbar-expand-lg " data-bs-theme="light">
@@ -34,13 +38,12 @@ const Navbar = () => {
                 <div className="input-group">
                   <input
                     className="form-control "
-                    type="search"
+                    type="text"
                     placeholder="Search"
+                    required={true}
+                    onChange={handleSearchChange}
                   />
-                  <button
-                    className="input-group-text btn btn-outline-secondary"
-                    type="submit"
-                  >
+                  <button className="input-group-text btn btn-outline-secondary">
                     <i className="bi bi-search"></i>
                   </button>
                 </div>

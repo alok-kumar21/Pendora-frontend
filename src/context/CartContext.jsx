@@ -147,6 +147,8 @@ export function CartProvider({ children }) {
     }
   }
 
+
+
   async function addToWishlist(product) {
     try {
       // Check if product already exists in wishlist
