@@ -4,8 +4,16 @@ import useFilter from "../useFilter";
 import useCartContext from "../context/CartContext";
 
 const ProductListing = () => {
-  const { product, loading, error, addToCart, addToWishlist } =
-    useCartContext();
+  const {
+    product,
+    loading,
+    error,
+    addToCart,
+    addToWishlist,
+    updateCart,
+    updateWishlist,
+    existingItem,
+  } = useCartContext();
 
   const {
     handlePriceChange,
@@ -40,6 +48,21 @@ const ProductListing = () => {
         <section className="col-md-8 mt-5 ">
           {loading && (
             <div className="alert alert-success text-center">Loading...</div>
+          )}
+          {updateCart && (
+            <div className="alert alert-success text-center">
+              adding in cart...
+            </div>
+          )}
+          {existingItem && (
+            <div className="alert alert-success text-center">
+              Item alread added
+            </div>
+          )}
+          {updateWishlist && (
+            <div className="alert alert-success text-center">
+              adding in Wishlist...
+            </div>
           )}
           {error && (
             <div className="alert alert-danger text-center">

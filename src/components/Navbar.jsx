@@ -3,11 +3,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 import useCartContext from "../context/CartContext";
 
-import useFilter from "../useFilter";
-
 const Navbar = () => {
   const { cartItem, wishlist } = useCartContext();
-  const {handleSearchChange } = useFilter();
 
   return (
     <header style={{ backgroundColor: "#0a192f" }}>
@@ -34,7 +31,7 @@ const Navbar = () => {
 
           <div className="collapse navbar-collapse" id="navbarNav">
             <div className="d-flex flex-grow-1 justify-content-center">
-              <form className="d-flex w-50" role="search">
+              <div className="d-flex w-50" role="search">
                 <div className="input-group">
                   <input
                     className="form-control "
@@ -47,7 +44,7 @@ const Navbar = () => {
                     <i className="bi bi-search"></i>
                   </button>
                 </div>
-              </form>
+              </div>
             </div>
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">

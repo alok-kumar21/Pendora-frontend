@@ -15,6 +15,7 @@ import Address from "./pages/Address";
 import OrderSummary from "./pages/OrderSummary";
 import Profile from "./pages/Profile";
 import OrderHistory from "./pages/OrderHistory";
+import useCartContext from "./context/CartContext";
 
 import { CartProvider } from "./context/CartContext";
 

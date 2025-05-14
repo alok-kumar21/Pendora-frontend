@@ -9,7 +9,8 @@ const Cart = () => {
     addToWishlist,
     updateCartItemQuantity,
     totalPrice,
-    totalDiscount,
+    quantityAlert,
+    updateCart,
     deliveryCharge,
     finalAmount,
     saveAmount,
@@ -25,6 +26,14 @@ const Cart = () => {
     <section className="container mt-4">
       {cloading && (
         <div className="alert alert-success text-center">Loading...</div>
+      )}
+      {updateCart && (
+        <div className="alert alert-success text-center">removing...</div>
+      )}
+      {quantityAlert && (
+        <div className="alert alert-success text-center">
+          updating Quantity...
+        </div>
       )}
       {cerror && (
         <div className="alert alert-danger text-center">

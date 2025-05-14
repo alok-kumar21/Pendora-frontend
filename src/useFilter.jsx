@@ -10,12 +10,6 @@ function useFilter(data) {
   const [rating, setRating] = useState();
   const [sortPrice, setSortPrice] = useState(null);
   const [products, setProducts] = useState([]);
-  const [search, setSearch] = useState();
-  const {
-    data: searchData,
-    loading: searchLoading,
-    error: searchError,
-  } = useFetch(`http://localhost:4001/v1/product/search/${search}`);
 
   useEffect(() => {
     if (data) {
@@ -38,11 +32,6 @@ function useFilter(data) {
             (category.clothing && productCategory === "Clothing")
           );
         });
-      }
-      // search product
-      if (searchData) {
-        console.log(search);
-        filteredProducts = [...searchData];
       }
 
       // Apply rating filter
@@ -76,11 +65,6 @@ function useFilter(data) {
     }));
   };
 
-  const handleSearchChange = (e) => {
-    const value = e.target.value;
-    setSearch(value);
-  };
-
   const handleRatingChange = (e) => {
     const value = Number(e.target.value);
     setRating(value);
@@ -109,8 +93,6 @@ function useFilter(data) {
     handleRatingChange,
     handleSortPriceChange,
     handlerClearFilter,
-    handleSearchChange,
-    setSearch,
   };
 }
 

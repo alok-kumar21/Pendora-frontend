@@ -41,6 +41,13 @@ export function CartProvider({ children }) {
   const [wishlist, setWishlist] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState();
 
+  // loading alerts state
+  const [updateCart, setUpdateCart] = useState(false);
+  const [updateWishlist, setUpdateWishlist] = useState(false);
+  const [removeWishlist, setRemoveWishlist] = useState(false);
+  const [quantityAlert, setQuantityAlert] = useState(false);
+  const [existingItem, setExistingItem] = useState(false);
+
   useEffect(() => {
     if (cartData) {
       setCartItems(cartData);
@@ -54,7 +61,6 @@ export function CartProvider({ children }) {
   }, [wishlistData]);
 
   async function addToCart(product) {
-    console.log(cartItem);
     try {
       // Check if product already exists in cart
 
@@ -63,6 +69,7 @@ export function CartProvider({ children }) {
       );
 
       if (existingItem) {
+        setExistingItem(true);
         // If exists, update quantity
         const response = await fetch(
           `http://localhost:4001/api/cart/update/${existingItem._id}`,
@@ -74,12 +81,14 @@ export function CartProvider({ children }) {
             body: JSON.stringify({ quantity: existingItem.quantity + 1 }),
           }
         );
+        setExistingItem(false);
 
         if (!response.ok) {
           throw new Error("Failed to update item quantity in cart");
         }
       } else {
         // If not exists, add new item
+        setUpdateCart(true);
         const response = await fetch("http://localhost:4001/api/addcart", {
           method: "POST",
           headers: {
@@ -94,12 +103,14 @@ export function CartProvider({ children }) {
         if (!response.ok) {
           throw new Error("Failed to add item to cart in database");
         }
+        setUpdateCart(false);
       }
 
       // Refresh cart data
       const updatedCart = await fetch("http://localhost:4001/api/cart").then(
         (res) => res.json()
       );
+
       setCartItems(updatedCart);
     } catch (error) {
       console.error("Error adding to cart:", error);
@@ -107,6 +118,7 @@ export function CartProvider({ children }) {
   }
 
   async function updateCartItemQuantity(cartItemId, newQuantity) {
+    setQuantityAlert(true);
     try {
       if (newQuantity < 1) return;
 
@@ -122,6 +134,7 @@ export function CartProvider({ children }) {
       );
 
       if (response.ok) {
+        setQuantityAlert(false);
         const updatedCart = cartItem.map((item) =>
           item._id === cartItemId ? { ...item, quantity: newQuantity } : item
         );
@@ -133,6 +146,7 @@ export function CartProvider({ children }) {
   }
 
   async function removeFromCart(cartItemId) {
+    setUpdateCart(true);
     try {
       const response = await fetch(
         `http://localhost:4001/api/cart/remove/${cartItemId}`,
@@ -142,14 +156,14 @@ export function CartProvider({ children }) {
       if (response.ok) {
         setCartItems(cartItem.filter((item) => item._id !== cartItemId));
       }
+      setUpdateCart(false);
     } catch (error) {
       console.error("Error removing from cart:", error);
     }
   }
 
-
-
   async function addToWishlist(product) {
+    setUpdateWishlist(true);
     try {
       // Check if product already exists in wishlist
       const exists = wishlist.some((item) => item.product._id === product._id);
@@ -173,6 +187,7 @@ export function CartProvider({ children }) {
       const updatedWishlist = await fetch(
         "http://localhost:4001/api/wishlist"
       ).then((res) => res.json());
+      setUpdateWishlist(false);
       setWishlist(updatedWishlist);
     } catch (error) {
       console.error("Error adding to wishlist:", error);
@@ -180,8 +195,8 @@ export function CartProvider({ children }) {
   }
 
   async function removeFromWishlist(wishlistItemId) {
+    setRemoveWishlist(true);
     try {
-      console.log(wishlistItemId);
       const response = await fetch(
         `http://localhost:4001/api/wishlist/remove/${wishlistItemId}`,
         { method: "DELETE" }
@@ -189,6 +204,7 @@ export function CartProvider({ children }) {
 
       if (response.ok) {
         setWishlist(wishlist.filter((item) => item._id !== wishlistItemId));
+        setRemoveWishlist(false);
       }
     } catch (error) {
       console.error("Error removing from wishlist:", error);
@@ -259,6 +275,12 @@ export function CartProvider({ children }) {
         finalAmount,
         finalPrice,
         saveAmount,
+        updateCart,
+        setUpdateWishlist,
+        updateWishlist,
+        removeWishlist,
+        quantityAlert,
+        existingItem,
       }}
     >
       {children}
