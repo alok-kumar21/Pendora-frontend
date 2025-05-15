@@ -1,23 +1,55 @@
+import useCartContext from "../context/CartContext";
 import useFetch from "./useFetch";
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+
 const ProductDetails = () => {
   const { data, loading, error } = useFetch(
     "https://pendora-backend.vercel.app/api/products"
   );
+
   const { productId } = useParams();
 
   const productData = data && data?.find((item) => item._id == productId);
+
+  const {
+    addToCart,
+    addToWishlist,
+    alerts,
+    clearCartAlerts,
+    clearWishlistAlerts,
+    clearItemExists,
+  } = useCartContext();
+
+  // Clear alerts when component unmounts
+  useEffect(() => {
+    return () => {
+      clearCartAlerts();
+      clearWishlistAlerts();
+      clearItemExists();
+    };
+  }, []);
 
   return (
     <>
       {loading && (
         <div className="container alert alert-success text-center" role="alert">
-          Loading... {console.log(loading)}
+          Loading...
         </div>
       )}
       {!productData && error && (
         <div className="container alert alert-danger text-center" role="alert">
           Failed to get Product
+        </div>
+      )}
+      {alerts.cart.success && (
+        <div className="container alert alert-success text-center" role="alert">
+          {alerts.cart.success}
+        </div>
+      )}
+      {alerts.wishlist.success && (
+        <div className="container alert alert-success text-center" role="alert">
+          {alerts.wishlist.success}
         </div>
       )}
 
@@ -29,6 +61,12 @@ const ProductDetails = () => {
                 <div className="col-md-3">
                   <div id="image " className="mx-3 mt-4">
                     <div className="shadow">
+                      <span
+                        onClick={() => addToWishlist(productData)}
+                        className="position-relative "
+                      >
+                        <i className="bi bi-bag-heart   h3 text-secondary   position-absolute top-10  start-100  m-4  "></i>
+                      </span>
                       <img
                         className="img-fluid w-70 my-5 "
                         src={productData.images}
@@ -42,7 +80,10 @@ const ProductDetails = () => {
                     </div>
                     <br />
                     <div className="d-grid">
-                      <button className="btn btn-secondary rounded-0">
+                      <button
+                        onClick={() => addToCart(productData)}
+                        className="btn btn-secondary rounded-0"
+                      >
                         Add to Cart
                       </button>
                     </div>
@@ -55,7 +96,7 @@ const ProductDetails = () => {
                     </div>
                     <div>
                       <p>
-                        <small>{productData.rating} ⭐⭐⭐⭐⭐</small>
+                        <small>Rating: {productData.rating} </small>
                       </p>
                     </div>
                     <div>
@@ -72,7 +113,9 @@ const ProductDetails = () => {
                       <button className="border rounded-circle ms-3">+</button>
                     </div>
                     <div className="mt-2">
-                      <p className="h5 text-secondary">50% off</p>
+                      <p className="h5 text-secondary">
+                        {productData.discount}% off
+                      </p>
                     </div>
                     <div className="mt-3">
                       <span>size:</span>

@@ -10,11 +10,13 @@ function useFilter(data) {
   const [rating, setRating] = useState();
   const [sortPrice, setSortPrice] = useState(null);
   const [products, setProducts] = useState([]);
+ 
 
   useEffect(() => {
     if (data) {
       let filteredProducts = [...data];
 
+     
       // filter price Range
 
       if (priceRange) {
@@ -80,6 +82,7 @@ function useFilter(data) {
     setCategory({ men: false, women: false });
     setRating(null);
     setSortPrice(null);
+    setSearchQuery("");
   };
 
   return {
@@ -93,6 +96,7 @@ function useFilter(data) {
     handleRatingChange,
     handleSortPriceChange,
     handlerClearFilter,
+   
   };
 }
 
