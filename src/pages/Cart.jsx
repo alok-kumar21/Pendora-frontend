@@ -1,5 +1,3 @@
-
-
 import useCartContext from "../context/CartContext";
 import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
@@ -38,19 +36,16 @@ const Cart = () => {
 
   return (
     <section className="container mt-4">
-      {/* Loading state for cart */}
       {cloading && (
         <div className="alert alert-info text-center">Loading cart...</div>
       )}
 
-      {/* Error state for cart */}
       {cerror && (
         <div className="alert alert-danger text-center">
           Failed to load cart: {cerror.message}
         </div>
       )}
 
-      {/* Cart operation alerts */}
       {alerts.cart.loading && (
         <div className="alert alert-info text-center">Updating cart...</div>
       )}
@@ -65,7 +60,6 @@ const Cart = () => {
         </div>
       )}
 
-      {/* Wishlist operation alerts */}
       {alerts.wishlist.loading && (
         <div className="alert alert-info text-center">Updating wishlist...</div>
       )}
@@ -79,7 +73,6 @@ const Cart = () => {
           {alerts.wishlist.success}
         </div>
       )}
-
       {cartItem.length > 0 ? (
         <>
           <h5 className="text-center">My Cart ({cartItem.length})</h5>
@@ -112,7 +105,7 @@ const Cart = () => {
                       <div className="mt-3">
                         <span>Quantity: </span>
                         <button
-                          className="btn btn-sm btn-outline-secondary rounded-circle ms-2"
+                          className="btn btn-sm btn-primary  rounded-circle ms-2"
                           onClick={() =>
                             handleQuantityChange(item, item.quantity - 1)
                           }
@@ -122,7 +115,7 @@ const Cart = () => {
                         </button>
                         <span className="mx-2">{item.quantity}</span>
                         <button
-                          className="btn btn-sm btn-outline-secondary rounded-circle"
+                          className="btn btn-sm btn-primary rounded-circle"
                           onClick={() =>
                             handleQuantityChange(item, item.quantity + 1)
                           }

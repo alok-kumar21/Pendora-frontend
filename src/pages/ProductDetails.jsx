@@ -12,6 +12,14 @@ const ProductDetails = () => {
 
   const productData = data && data?.find((item) => item._id == productId);
 
+  const similarProduct = data?.filter(
+    (item) =>
+      item.name !== productData.name &&
+      item.category.name === productData.category.name
+  );
+
+  console.log(similarProduct);
+
   const {
     addToCart,
     addToWishlist,
@@ -70,7 +78,7 @@ const ProductDetails = () => {
                       <img
                         className="img-fluid w-70 my-5 "
                         src={productData.images}
-                        alt=""
+                        alt="img-here"
                       />
                     </div>
                     <div className="d-grid mt-4">
@@ -101,15 +109,19 @@ const ProductDetails = () => {
                     </div>
                     <div>
                       <span className="h5">₹{productData.price}</span>
-                      <span className="text-secondary  ms-2 text-decoration-line-through">
-                        ₹3999
+                      <span className="text-success  ms-2 text-decoration-line-through">
+                        ₹
+                        {(
+                          productData.price -
+                          (productData.price * productData.discount) / 100
+                        ).toFixed(1)}
                       </span>
                     </div>
 
                     <div className="mt-3">
                       <span>Quantity:</span>
                       <button className="border rounded-circle ms-2">-</button>
-                      <button className="border h5 ms-3 rounded">0</button>
+                      <button className="border h5 ms-3 rounded">1</button>
                       <button className="border rounded-circle ms-3">+</button>
                     </div>
                     <div className="mt-2">
@@ -164,32 +176,35 @@ const ProductDetails = () => {
                 </div>
               </div>
             </section>
-            <hr />
-            <section className="container mb-5">
-              <div className="mb-4">
-                <h5>More items you may like in apparel</h5>
-              </div>
-              <div className="row">
-                <div className="col-md-3">
-                  <div className="card">
-                    <img
-                      src="https://placehold.co/600x400?text=Hello+World"
-                      alt=""
-                    />
-                    <div className="card-body">
-                      <p className="card-text text-center">
-                        Men Premium Jacket
-                      </p>
-                      <div className="d-grid">
-                        <button className="btn btn-secondary rounded-0">
-                          Add to Cart
-                        </button>
+
+            {similarProduct.length > 0 && (
+              <section className="container mb-5">
+                <hr />
+                <div className="mb-4">
+                  <h5>More items you may like in apparel</h5>
+                </div>
+                <div className="row">
+                  {similarProduct?.map((item) => (
+                    <div className="col-md-3">
+                      <div className="card">
+                        <img src={item.images} alt="" />
+                        <div className="card-body">
+                          <p className="card-text text-center">{item.name}</p>
+                          <div className="d-grid">
+                            <button
+                              onClick={() => addToCart(item)}
+                              className="btn btn-secondary rounded-0"
+                            >
+                              Add to Cart
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
-              </div>
-            </section>
+              </section>
+            )}
           </section>
         </section>
       )}

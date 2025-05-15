@@ -4,7 +4,8 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import useCartContext from "../context/CartContext";
 
 const Navbar = () => {
-  const { cartItem, wishlist, handleSearch } = useCartContext();
+  const { cartItem, wishlist, handleSearchChange, handleSearchSubmit } =
+    useCartContext();
 
   return (
     <header style={{ backgroundColor: "#0a192f" }}>
@@ -34,7 +35,7 @@ const Navbar = () => {
               <form
                 className="d-flex w-50"
                 role="search"
-                // onSubmit={handleSearchSubmit}
+                onSubmit={handleSearchSubmit}
               >
                 <div className="input-group">
                   <input
@@ -42,8 +43,7 @@ const Navbar = () => {
                     type="text"
                     placeholder="Search"
                     required={true}
-                    // value={searchInput}
-                    // onChange={handleSearchChange}
+                    onChange={handleSearchChange}
                   />
                   <button className="input-group-text btn btn-outline-secondary">
                     <i className="bi bi-search"></i>

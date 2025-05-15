@@ -10,13 +10,24 @@ function useFilter(data) {
   const [rating, setRating] = useState();
   const [sortPrice, setSortPrice] = useState(null);
   const [products, setProducts] = useState([]);
- 
+  const [search, setSearch] = useState();
+
+  // call Search API
+  const {
+    data: searchData,
+    loading: searchLoading,
+    error: searchError,
+  } = useFetch(`http://localhost:4001/v1/product/search/${search}`);
 
   useEffect(() => {
     if (data) {
       let filteredProducts = [...data];
 
      
+      if (searchData) {
+        filteredProducts = [...searchData];
+      }
+
       // filter price Range
 
       if (priceRange) {
@@ -53,6 +64,15 @@ function useFilter(data) {
       setProducts(filteredProducts);
     }
   }, [data, priceRange, category, rating, sortPrice]);
+
+  function handleSearchChange(event) {
+    const value = event.target.value;
+    setSearch(value);
+  }
+
+  function handleSearchSubmit(event) {
+    event.preventDefault();
+  }
 
   const handlePriceChange = (e) => {
     const value = Number(e.target.value);
@@ -96,7 +116,8 @@ function useFilter(data) {
     handleRatingChange,
     handleSortPriceChange,
     handlerClearFilter,
-   
+    handleSearchChange,
+    handleSearchSubmit,
   };
 }
 

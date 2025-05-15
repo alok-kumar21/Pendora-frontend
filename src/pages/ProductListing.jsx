@@ -135,8 +135,11 @@ const ProductListing = () => {
                     alt={item.name}
                   />
 
-                  <div className="text-center">
-                    <Link to={`/api/productdetails/${item._id}`}>
+                  <div className="text-center mt-2">
+                    <Link
+                      className="text-dark text-decoration-none"
+                      to={`/api/productdetails/${item._id}`}
+                    >
                       <p className="card-text">{item.name}</p>
                       <h5>₹{item.price}</h5>
                     </Link>
