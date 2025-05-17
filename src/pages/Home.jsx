@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -7,7 +7,7 @@ const Home = () => {
       <section>
         <div className="container mt-3">
           <div className="row">
-            <NavLink to="/productlisting" className="col">
+            <Link to="/v1/categories/680e71e4cd9ad19fdf20f765" className="col">
               <img
                 style={{ width: "8rem" }}
                 src="https://static.vecteezy.com/system/resources/thumbnails/048/045/189/small/portrait-of-a-young-casual-man-isolated-on-transparent-background-png.png"
@@ -15,7 +15,7 @@ const Home = () => {
                 className="img-fluid"
               />
               <p className="ms-5 text-dark text-decoration-none">Men</p>
-            </NavLink>
+            </Link>
             <div className="col">
               <img
                 style={{ width: "8rem" }}

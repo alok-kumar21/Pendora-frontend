@@ -183,7 +183,7 @@ const ProductDetails = () => {
                 </div>
                 <div className="row">
                   {similarProduct?.map((item) => (
-                    <div className="col-md-3">
+                    <div className="col-md-3 mt-3">
                       <div className="card">
                         <img src={item.images} alt="" />
                         <div className="card-body">

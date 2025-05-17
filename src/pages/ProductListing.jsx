@@ -141,6 +141,8 @@ const ProductListing = () => {
                       to={`/api/productdetails/${item._id}`}
                     >
                       <p className="card-text">{item.name}</p>
+                      <p className="card-text">{item.brand}</p>
+
                       <h5>₹{item.price}</h5>
                     </Link>
                     <div className="d-grid">

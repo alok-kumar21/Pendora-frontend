@@ -10,17 +10,13 @@ export default useCartContext;
 
 export function CartProvider({ children }) {
   const { search } = useFilter();
-  console.log(search);
+ 
   // API calls
   const {
     data: product,
     loading,
     error,
-  } = useFetch(
-    search
-      ? `http://localhost:4001/v1/product/search/${search}`
-      : "http://localhost:4001/api/products"
-  );
+  } = useFetch("http://localhost:4001/api/products");
   const {
     data: cartData,
     loading: cloading,
