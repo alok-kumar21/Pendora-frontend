@@ -1,7 +1,6 @@
-
-
 import { createContext, useContext, useState, useEffect } from "react";
 import useFetch from "../pages/useFetch";
+import useFilter from "../useFilter";
 
 const CartContext = createContext();
 
@@ -10,12 +9,18 @@ const useCartContext = () => useContext(CartContext);
 export default useCartContext;
 
 export function CartProvider({ children }) {
+  const { search } = useFilter();
+  console.log(search);
   // API calls
   const {
     data: product,
     loading,
     error,
-  } = useFetch("http://localhost:4001/api/products");
+  } = useFetch(
+    search
+      ? `http://localhost:4001/v1/product/search/${search}`
+      : "http://localhost:4001/api/products"
+  );
   const {
     data: cartData,
     loading: cloading,

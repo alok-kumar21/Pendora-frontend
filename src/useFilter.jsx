@@ -12,24 +12,17 @@ function useFilter(data) {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState();
 
-  // call Search API
-  const {
-    data: searchData,
-    loading: searchLoading,
-    error: searchError,
-  } = useFetch(`http://localhost:4001/v1/product/search/${search}`);
-
   useEffect(() => {
     if (data) {
       let filteredProducts = [...data];
 
-     
-      if (searchData) {
-        filteredProducts = [...searchData];
+      if (search) {
+        filteredProducts = filteredProducts.filter(
+          (item) => item.name === search
+        );
       }
 
       // filter price Range
-
       if (priceRange) {
         filteredProducts = filteredProducts.filter(
           (item) => item.price >= priceRange
@@ -63,7 +56,7 @@ function useFilter(data) {
 
       setProducts(filteredProducts);
     }
-  }, [data, priceRange, category, rating, sortPrice]);
+  }, [data, priceRange, category, rating, sortPrice, search]);
 
   function handleSearchChange(event) {
     const value = event.target.value;
@@ -102,7 +95,7 @@ function useFilter(data) {
     setCategory({ men: false, women: false });
     setRating(null);
     setSortPrice(null);
-    setSearchQuery("");
+    setSearch("");
   };
 
   return {
@@ -118,6 +111,7 @@ function useFilter(data) {
     handlerClearFilter,
     handleSearchChange,
     handleSearchSubmit,
+    search,
   };
 }
 

@@ -2,10 +2,12 @@ import { NavLink } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 import useCartContext from "../context/CartContext";
+import useFilter from "../useFilter";
 
 const Navbar = () => {
-  const { cartItem, wishlist, handleSearchChange, handleSearchSubmit } =
-    useCartContext();
+  const { cartItem, wishlist } = useCartContext();
+
+  const { handleSearchChange, handleSearchSubmit } = useFilter();
 
   return (
     <header style={{ backgroundColor: "#0a192f" }}>
@@ -32,10 +34,10 @@ const Navbar = () => {
 
           <div className="collapse navbar-collapse" id="navbarNav">
             <div className="d-flex flex-grow-1 justify-content-center">
-              <form
+              <div
                 className="d-flex w-50"
                 role="search"
-                onSubmit={handleSearchSubmit}
+                // onSubmit={handleSearchSubmit}
               >
                 <div className="input-group">
                   <input
@@ -45,11 +47,14 @@ const Navbar = () => {
                     required={true}
                     onChange={handleSearchChange}
                   />
-                  <button className="input-group-text btn btn-outline-secondary">
+                  <button
+                    type="submit"
+                    className="input-group-text btn btn-outline-secondary"
+                  >
                     <i className="bi bi-search"></i>
                   </button>
                 </div>
-              </form>
+              </div>
             </div>
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">

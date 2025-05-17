@@ -18,8 +18,6 @@ const ProductDetails = () => {
       item.category.name === productData.category.name
   );
 
-  console.log(similarProduct);
-
   const {
     addToCart,
     addToWishlist,

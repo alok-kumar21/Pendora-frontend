@@ -30,7 +30,7 @@ const ProductListing = () => {
     handlerClearFilter,
   } = useFilter(product);
 
-  // Clear alerts when component unmounts
+  // Clear alerts
   useEffect(() => {
     return () => {
       clearCartAlerts();
