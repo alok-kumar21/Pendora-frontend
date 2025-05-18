@@ -45,8 +45,8 @@ const Address = () => {
     try {
       const addingData = await fetch(
         editingId
-          ? `http://localhost:4001/api/v3/address/${editingId}`
-          : `http://localhost:4001/api/v1/address`,
+          ? `http://localhost:4001/v3/address/${editingId}`
+          : `http://localhost:4001/v1/address`,
         {
           method: "POST",
           headers: {
@@ -82,7 +82,7 @@ const Address = () => {
   async function handleDeleteAddress(addressId) {
     try {
       const deletedAddress = await fetch(
-        `http://localhost:4001/api/v3/address/${addressId}`,
+        `http://localhost:4001/v3/address/${addressId}`,
         {
           method: "DELETE",
         }

@@ -1,26 +1,18 @@
 import { useState, useEffect } from "react";
-import useFetch from "./pages/useFetch";
 
 function useFilter(data) {
   const [category, setCategory] = useState({
     electronics: false,
-    clothing: false,
+    home: false,
   });
   const [priceRange, setPriceRange] = useState(1);
   const [rating, setRating] = useState();
   const [sortPrice, setSortPrice] = useState(null);
   const [products, setProducts] = useState([]);
-  const [search, setSearch] = useState();
 
   useEffect(() => {
     if (data) {
       let filteredProducts = [...data];
-
-      if (search) {
-        filteredProducts = filteredProducts.filter(
-          (item) => item.name === search
-        );
-      }
 
       // filter price Range
       if (priceRange) {
@@ -30,12 +22,13 @@ function useFilter(data) {
       }
 
       // Apply category filter if any category is selected
-      if (category.electronics || category.clothing) {
+
+      if (category.electronics || category.home) {
         filteredProducts = filteredProducts.filter((product) => {
-          const productCategory = product.category.name;
+          const productCategory = product?.category?.name;
           return (
             (category.electronics && productCategory === "Electronics") ||
-            (category.clothing && productCategory === "Clothing")
+            (category.home && productCategory === "Home")
           );
         });
       }
@@ -56,16 +49,7 @@ function useFilter(data) {
 
       setProducts(filteredProducts);
     }
-  }, [data, priceRange, category, rating, sortPrice, search]);
-
-  function handleSearchChange(event) {
-    const value = event.target.value;
-    setSearch(value);
-  }
-
-  function handleSearchSubmit(event) {
-    event.preventDefault();
-  }
+  }, [data, priceRange, category, rating, sortPrice]);
 
   const handlePriceChange = (e) => {
     const value = Number(e.target.value);
@@ -109,9 +93,6 @@ function useFilter(data) {
     handleRatingChange,
     handleSortPriceChange,
     handlerClearFilter,
-    handleSearchChange,
-    handleSearchSubmit,
-    search,
   };
 }
 

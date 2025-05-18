@@ -1,21 +1,20 @@
 import useCartContext from "../context/CartContext";
-import useFetch from "./useFetch";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-
+import useFetch from "../pages/useFetch";
 const ProductDetails = () => {
   const { data, loading, error } = useFetch(
-    "https://pendora-backend.vercel.app/api/products"
+    "http://localhost:4001/v1/products"
   );
 
   const { productId } = useParams();
 
-  const productData = data && data?.find((item) => item._id == productId);
+  const productData = data?.find((item) => item._id == productId);
 
   const similarProduct = data?.filter(
     (item) =>
-      item.name !== productData.name &&
-      item.category.name === productData.category.name
+      item?._id !== productData?._id &&
+      item?.category?.name === productData?.category?.name
   );
 
   const {
@@ -48,6 +47,7 @@ const ProductDetails = () => {
           Failed to get Product
         </div>
       )}
+
       {alerts.cart.success && (
         <div className="container alert alert-success text-center" role="alert">
           {alerts.cart.success}
@@ -183,7 +183,7 @@ const ProductDetails = () => {
                 </div>
                 <div className="row">
                   {similarProduct?.map((item) => (
-                    <div className="col-md-3 mt-3">
+                    <div key={item._id} className="col-md-3 mt-3">
                       <div className="card">
                         <img src={item.images} alt="" />
                         <div className="card-body">

@@ -9,29 +9,34 @@ const useCartContext = () => useContext(CartContext);
 export default useCartContext;
 
 export function CartProvider({ children }) {
-  const { search } = useFilter();
- 
+  const [search, setSearch] = useState();
+
+  console.log(search);
   // API calls
   const {
     data: product,
     loading,
     error,
-  } = useFetch("http://localhost:4001/api/products");
+  } = useFetch(
+    search
+      ? `http://localhost:4001/v1/product/search/${search}`
+      : "http://localhost:4001/v1/products"
+  );
   const {
     data: cartData,
     loading: cloading,
     error: cerror,
-  } = useFetch("http://localhost:4001/api/cart");
+  } = useFetch("http://localhost:4001/v1/cart");
   const {
     data: wishlistData,
     loading: wishlistLoading,
     error: wishlistError,
-  } = useFetch("http://localhost:4001/api/wishlist");
+  } = useFetch("http://localhost:4001/v2/wishlist");
   const {
     data: address,
     loading: addressLoading,
     error: addressError,
-  } = useFetch("http://localhost:4001/api/v2/address");
+  } = useFetch("http://localhost:4001/v2/address");
 
   // State
   const [cartItem, setCartItems] = useState([]);
@@ -87,7 +92,7 @@ export function CartProvider({ children }) {
         setAlerts((prev) => ({ ...prev, itemExists: true }));
 
         const response = await fetch(
-          `http://localhost:4001/api/cart/update/${existingItem._id}`,
+          `http://localhost:4001/v1/cart/update/${existingItem._id}`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -100,7 +105,7 @@ export function CartProvider({ children }) {
 
         setAlert("cart", "success", "Item quantity updated in cart");
       } else {
-        const response = await fetch("http://localhost:4001/api/addcart", {
+        const response = await fetch("http://localhost:4001/v1/addcart", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ product: product._id, quantity: 1 }),
@@ -112,7 +117,7 @@ export function CartProvider({ children }) {
       }
 
       // Refresh cart data
-      const updatedCart = await fetch("http://localhost:4001/api/cart").then(
+      const updatedCart = await fetch("http://localhost:4001/v1/cart").then(
         (res) => res.json()
       );
       setCartItems(updatedCart);
@@ -131,7 +136,7 @@ export function CartProvider({ children }) {
 
     try {
       const response = await fetch(
-        `http://localhost:4001/api/cart/remove/${cartItemId}`,
+        `http://localhost:4001/v1/cart/remove/${cartItemId}`,
         { method: "DELETE" }
       );
 
@@ -158,7 +163,7 @@ export function CartProvider({ children }) {
       }
 
       const response = await fetch(
-        `http://localhost:4001/api/cart/update/${cartItemId}`,
+        `http://localhost:4001/v1/cart/update/${cartItemId}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -205,7 +210,7 @@ export function CartProvider({ children }) {
       const exists = wishlist.some((item) => item.product._id === product._id);
       if (exists) throw new Error("Product already in wishlist");
 
-      const response = await fetch("http://localhost:4001/api/wishlist", {
+      const response = await fetch("http://localhost:4001/v1/wishlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ product: product._id }),
@@ -214,7 +219,7 @@ export function CartProvider({ children }) {
       if (!response.ok) throw new Error("Failed to add to wishlist");
 
       const updatedWishlist = await fetch(
-        "http://localhost:4001/api/wishlist"
+        "http://localhost:4001/v2/wishlist"
       ).then((res) => res.json());
       setWishlist(updatedWishlist);
       setAlert("wishlist", "success", "Item added to wishlist");
@@ -232,7 +237,7 @@ export function CartProvider({ children }) {
 
     try {
       const response = await fetch(
-        `http://localhost:4001/api/wishlist/remove/${wishlistItemId}`,
+        `http://localhost:4001/v1/wishlist/remove/${wishlistItemId}`,
         { method: "DELETE" }
       );
 
@@ -309,6 +314,7 @@ export function CartProvider({ children }) {
         finalPrice,
         saveAmount,
         alerts,
+        setSearch,
 
         // Cart functions
         addToCart,

@@ -5,16 +5,14 @@ import useCartContext from "../context/CartContext";
 import useFilter from "../useFilter";
 
 const Navbar = () => {
-  const { cartItem, wishlist } = useCartContext();
-
-  const { handleSearchChange, handleSearchSubmit } = useFilter();
+  const { cartItem, wishlist, setSearch } = useCartContext();
 
   return (
-    <header style={{ backgroundColor: "#0a192f" }}>
+    <header style={{ backgroundColor: "#D5006D" }}>
       <nav className="navbar navbar-expand-lg " data-bs-theme="light">
         <div className="container">
           <NavLink
-            style={{ color: "#64ffda" }}
+            style={{ color: "#ffffff" }}
             to="/"
             className="navbar-brand  fw-medium"
           >
@@ -34,22 +32,18 @@ const Navbar = () => {
 
           <div className="collapse navbar-collapse" id="navbarNav">
             <div className="d-flex flex-grow-1 justify-content-center">
-              <div
-                className="d-flex w-50"
-                role="search"
-                // onSubmit={handleSearchSubmit}
-              >
+              <div className="d-flex w-50">
                 <div className="input-group">
                   <input
                     className="form-control"
                     type="text"
                     placeholder="Search"
                     required={true}
-                    onChange={handleSearchChange}
+                    onChange={(event) => setSearch(event.target.value)}
                   />
                   <button
                     type="submit"
-                    className="input-group-text btn btn-outline-secondary"
+                    className="input-group-text btn btn-light"
                   >
                     <i className="bi bi-search"></i>
                   </button>
@@ -61,9 +55,9 @@ const Navbar = () => {
                 <NavLink className="nav-link">
                   <button
                     style={{
-                      color: "#64ffda",
-                      borderColor: "#64ffda",
-                      backgroundColor: "#0a192f",
+                      color: "#ffffff",
+                      borderColor: "#FFf",
+                      backgroundColor: "#D5006D",
                     }}
                     className="btn p-1 rounded"
                   >
@@ -74,11 +68,8 @@ const Navbar = () => {
               <li className="nav-item">
                 <NavLink to="/wishList" className="nav-link">
                   <span type="button" className="position-relative">
-                    <i
-                      style={{ color: "#64ffda" }}
-                      className="bi bi-heart h5"
-                    ></i>
-                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    <i style={{ color: "#fff" }} className="bi bi-heart h5"></i>
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
                       {wishlist?.length}
                     </span>
                   </span>
@@ -87,11 +78,8 @@ const Navbar = () => {
               <li className="nav-item">
                 <NavLink to="/cart" className="nav-link">
                   <span type="button" className="position-relative">
-                    <i
-                      style={{ color: "#64ffda" }}
-                      className="bi bi-bag h5"
-                    ></i>
-                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    <i style={{ color: "#fff" }} className="bi bi-bag h5"></i>
+                    <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark">
                       {cartItem?.length}
                     </span>
                   </span>
@@ -102,7 +90,7 @@ const Navbar = () => {
             <NavLink to="/profile" className="nav-link ms-5">
               <span type="button" className="position-relative">
                 <i
-                  style={{ color: "#64ffda" }}
+                  style={{ color: "#fff" }}
                   className="bi bi-person-circle h4"
                 ></i>
               </span>

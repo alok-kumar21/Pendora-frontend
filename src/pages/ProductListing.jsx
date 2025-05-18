@@ -138,7 +138,7 @@ const ProductListing = () => {
                   <div className="text-center mt-2">
                     <Link
                       className="text-dark text-decoration-none"
-                      to={`/api/productdetails/${item._id}`}
+                      to={`/v1/productdetails/${item._id}`}
                     >
                       <p className="card-text">{item.name}</p>
                       <p className="card-text">{item.brand}</p>

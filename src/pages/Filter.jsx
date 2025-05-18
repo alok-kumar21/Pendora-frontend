@@ -66,12 +66,12 @@ const Filter = ({
               onChange={handleCategoryChange}
               className="form-check-input"
               type="checkbox"
-              value="clothing"
+              value="home"
               id="clothing"
-              checked={category.clothing}
+              checked={category.home}
             />
             <label className="form-check-label" htmlFor="clothing">
-              Clothing
+              Home
             </label>
           </div>
         </div>

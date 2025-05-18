@@ -1,21 +1,42 @@
 import { Link } from "react-router-dom";
+import useFetch from "./useFetch";
 
 const Home = () => {
+  const { data, loading, error } = useFetch(
+    `http://localhost:4001/v1/categories`
+  );
+
   return (
     <>
       {/* catogery */}
       <section>
         <div className="container mt-3">
           <div className="row">
-            <Link to="/v1/categories/680e71e4cd9ad19fdf20f765" className="col">
+            <Link to="/productlisting" className="col">
               <img
                 style={{ width: "8rem" }}
-                src="https://static.vecteezy.com/system/resources/thumbnails/048/045/189/small/portrait-of-a-young-casual-man-isolated-on-transparent-background-png.png"
-                alt=""
+                alt="images-here"
+                src="https://static.thenounproject.com/png/65496-200.png"
                 className="img-fluid"
               />
-              <p className="ms-5 text-dark text-decoration-none">Men</p>
+              <p className="ms-5 text-dark text-decoration-none">
+                All Products
+              </p>
             </Link>
+            {/* {data?.map((item) => (
+              <Link to={`/v1/categories/${item._id}`} className="col">
+                <img
+                  style={{ width: "8rem" }}
+                  alt="images-here"
+                  src={item.images}
+                  className="img-fluid"
+                />
+                <p className="ms-5 text-dark text-decoration-none">
+                  {item.name}
+                </p>
+              </Link>
+            ))} */}
+
             <div className="col">
               <img
                 style={{ width: "8rem" }}
