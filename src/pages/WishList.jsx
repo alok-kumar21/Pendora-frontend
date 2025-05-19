@@ -28,7 +28,7 @@ const WishList = () => {
     <div className="container py-4">
       <div className="row">
         <div className="col-12">
-          <h2 className="mb-4">My Wishlist</h2>
+          <h2 className="mb-4 text-center">My Wishlist</h2>
 
           {/* Loading State */}
           {wishlistLoading && (

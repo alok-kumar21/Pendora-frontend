@@ -41,7 +41,7 @@ const ProductListing = () => {
 
   return (
     <>
-      <section className="row">
+      <section className="mx-4 row">
         <Filter
           handlePriceChange={handlePriceChange}
           priceRange={priceRange}
@@ -55,7 +55,7 @@ const ProductListing = () => {
         />
 
         {/* Products */}
-        <section className="col-md-8 mt-5">
+        <section className="col-md-9  mt-5">
           {/* Loading state for products */}
           {loading && (
             <div className="alert alert-info text-center">

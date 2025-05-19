@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 import useCartContext from "../context/CartContext";
-import useFilter from "../useFilter";
 
 const Navbar = () => {
   const { cartItem, wishlist, setSearch } = useCartContext();
@@ -21,6 +20,7 @@ const Navbar = () => {
           <button
             className="navbar-toggler"
             type="button"
+            data-bs-theme="dark"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
             aria-controls="navbarNav"
@@ -33,7 +33,7 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <div className="d-flex flex-grow-1 justify-content-center">
               <div className="d-flex w-50">
-                <div className="input-group">
+                <div className="input-group ">
                   <input
                     className="form-control"
                     type="text"
@@ -51,7 +51,7 @@ const Navbar = () => {
               </div>
             </div>
             <ul className="navbar-nav ms-auto">
-              <li className="nav-item">
+              <li className="nav-item ">
                 <NavLink className="nav-link">
                   <button
                     style={{
@@ -85,16 +85,17 @@ const Navbar = () => {
                   </span>
                 </NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink to="/profile" className="nav-link ">
+                  <span type="button" className="position-relative">
+                    <i
+                      style={{ color: "#fff" }}
+                      className="bi bi-person-circle h4"
+                    ></i>
+                  </span>
+                </NavLink>
+              </li>
             </ul>
-
-            <NavLink to="/profile" className="nav-link ms-5">
-              <span type="button" className="position-relative">
-                <i
-                  style={{ color: "#fff" }}
-                  className="bi bi-person-circle h4"
-                ></i>
-              </span>
-            </NavLink>
           </div>
         </div>
       </nav>

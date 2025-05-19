@@ -31,7 +31,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/wishList" element={<WishList />} />
             <Route
-              path="/api/productdetails/:productId"
+              path="/v1/productdetails/:productId"
               element={<ProductDetails />}
             />
             <Route path="/address" element={<Address />} />
