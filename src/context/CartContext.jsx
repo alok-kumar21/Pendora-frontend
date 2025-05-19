@@ -19,24 +19,24 @@ export function CartProvider({ children }) {
     error,
   } = useFetch(
     search
-      ? `http://localhost:4001/v1/product/search/${search}`
-      : "http://localhost:4001/v1/products"
+      ? `https://pendora-backend.vercel.app/v1/product/search/${search}`
+      : "https://pendora-backend.vercel.app/v1/products"
   );
   const {
     data: cartData,
     loading: cloading,
     error: cerror,
-  } = useFetch("http://localhost:4001/v1/cart");
+  } = useFetch("https://pendora-backend.vercel.app/v1/cart");
   const {
     data: wishlistData,
     loading: wishlistLoading,
     error: wishlistError,
-  } = useFetch("http://localhost:4001/v2/wishlist");
+  } = useFetch("https://pendora-backend.vercel.app/v2/wishlist");
   const {
     data: address,
     loading: addressLoading,
     error: addressError,
-  } = useFetch("http://localhost:4001/v2/address");
+  } = useFetch("https://pendora-backend.vercel.app/v2/address");
 
   // State
   const [cartItem, setCartItems] = useState([]);
@@ -92,7 +92,7 @@ export function CartProvider({ children }) {
         setAlerts((prev) => ({ ...prev, itemExists: true }));
 
         const response = await fetch(
-          `http://localhost:4001/v1/cart/update/${existingItem._id}`,
+          `https://pendora-backend.vercel.app/v1/cart/update/${existingItem._id}`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -105,11 +105,14 @@ export function CartProvider({ children }) {
 
         setAlert("cart", "success", "Item quantity updated in cart");
       } else {
-        const response = await fetch("http://localhost:4001/v1/addcart", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ product: product._id, quantity: 1 }),
-        });
+        const response = await fetch(
+          "https://pendora-backend.vercel.app/v1/addcart",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ product: product._id, quantity: 1 }),
+          }
+        );
 
         if (!response.ok) throw new Error("Failed to add item to cart");
 
@@ -117,9 +120,9 @@ export function CartProvider({ children }) {
       }
 
       // Refresh cart data
-      const updatedCart = await fetch("http://localhost:4001/v1/cart").then(
-        (res) => res.json()
-      );
+      const updatedCart = await fetch(
+        "https://pendora-backend.vercel.app/v1/cart"
+      ).then((res) => res.json());
       setCartItems(updatedCart);
     } catch (error) {
       console.error("Error adding to cart:", error);
@@ -136,7 +139,7 @@ export function CartProvider({ children }) {
 
     try {
       const response = await fetch(
-        `http://localhost:4001/v1/cart/remove/${cartItemId}`,
+        `https://pendora-backend.vercel.app/v1/cart/remove/${cartItemId}`,
         { method: "DELETE" }
       );
 
@@ -163,7 +166,7 @@ export function CartProvider({ children }) {
       }
 
       const response = await fetch(
-        `http://localhost:4001/v1/cart/update/${cartItemId}`,
+        `https://pendora-backend.vercel.app/v1/cart/update/${cartItemId}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -210,16 +213,19 @@ export function CartProvider({ children }) {
       const exists = wishlist.some((item) => item.product._id === product._id);
       if (exists) throw new Error("Product already in wishlist");
 
-      const response = await fetch("http://localhost:4001/v1/wishlist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ product: product._id }),
-      });
+      const response = await fetch(
+        "https://pendora-backend.vercel.app/v1/wishlist",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ product: product._id }),
+        }
+      );
 
       if (!response.ok) throw new Error("Failed to add to wishlist");
 
       const updatedWishlist = await fetch(
-        "http://localhost:4001/v2/wishlist"
+        "https://pendora-backend.vercel.app/v2/wishlist"
       ).then((res) => res.json());
       setWishlist(updatedWishlist);
       setAlert("wishlist", "success", "Item added to wishlist");
@@ -237,7 +243,7 @@ export function CartProvider({ children }) {
 
     try {
       const response = await fetch(
-        `http://localhost:4001/v1/wishlist/remove/${wishlistItemId}`,
+        `https://pendora-backend.vercel.app/v1/wishlist/remove/${wishlistItemId}`,
         { method: "DELETE" }
       );
 

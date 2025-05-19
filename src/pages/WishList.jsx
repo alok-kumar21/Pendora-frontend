@@ -1,5 +1,3 @@
-
-
 import useCartContext from "../context/CartContext";
 import { useEffect } from "react";
 

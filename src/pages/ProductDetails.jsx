@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import useFetch from "../pages/useFetch";
 const ProductDetails = () => {
   const { data, loading, error } = useFetch(
-    "http://localhost:4001/v1/products"
+    "https://pendora-backend.vercel.app/v1/products"
   );
 
   const { productId } = useParams();
