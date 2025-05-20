@@ -116,10 +116,10 @@ const ProductListing = () => {
             </h5>
           </div>
 
-          <div className="row">
+          <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
             {products?.map((item) => (
-              <div key={item._id} className="col-md-3 mt-4">
-                <div className="card border-0 trsa">
+              <div key={item._id} className="col">
+                <div className="card h-100">
                   <span
                     onClick={() => addToWishlist(item)}
                     className="position-relative"
@@ -129,26 +129,27 @@ const ProductListing = () => {
                   </span>
 
                   <img
-                    className="img-fluid"
-                    style={{ height: "50%", objectFit: "cover" }}
+                    className="card-img-top p-3"
+                    // style={{ height: "50%", objectFit: "cover" }}
                     src={item.images}
                     alt={item.name}
                   />
 
-                  <div className="text-center mt-2">
+                  <div className="card-body d-flex flex-column">
                     <Link
                       className="text-dark text-decoration-none"
                       to={`/v1/productdetails/${item._id}`}
                     >
-                      <p className="card-text">{item.name}</p>
-                      <p className="card-text">{item.brand}</p>
-
-                      <h5>₹{item.price}</h5>
+                      <h6 className="card-title text-center">{item.name}</h6>
+                      <p className="card-text text-center">{item.brand}</p>
+                      <h6 className="card-text text-center mb-1">
+                        ₹{item.price}
+                      </h6>
                     </Link>
                     <div className="d-grid">
                       <button
                         onClick={() => addToCart(item)}
-                        className="btn btn-primary rounded"
+                        className="btn btn-primary rounded-0 mt-auto"
                         type="button"
                       >
                         Add To Cart

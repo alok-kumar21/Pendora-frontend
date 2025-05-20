@@ -1,0 +1,8 @@
+.filter:hover {
+  background-color: #d5006d;
+  color: #fff;
+}
+.filter {
+  color: #d5006d;
+  border: #d5006d solid 1px;
+}

@@ -1,3 +1,5 @@
+import "../App.css";
+
 const Filter = ({
   handlePriceChange,
   priceRange,
@@ -13,7 +15,7 @@ const Filter = ({
     <section className="col-12 col-md-4 col-lg-3 pt-4">
       <div className="d-md-none mb-3">
         <button
-          className="btn btn-outline-danger w-100"
+          className="filter btn  w-100"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#filterCollapse"

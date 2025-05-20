@@ -15,7 +15,7 @@ const WishList = () => {
     clearItemExists,
   } = useCartContext();
 
-  // Clear alerts when component unmounts
+  // Clear alerts 
   useEffect(() => {
     return () => {
       clearCartAlerts();

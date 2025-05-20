@@ -66,7 +66,7 @@ export function CartProvider({ children }) {
     if (wishlistData) setWishlist(wishlistData);
   }, [wishlistData]);
 
-  // Helper function to set alert state
+  //  function to set alert state
   const setAlert = (type, field, value) => {
     setAlerts((prev) => ({
       ...prev,
