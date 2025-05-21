@@ -50,7 +50,8 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            <ul className="navbar-nav ms-auto">
+
+            <ul className="navbar-nav ">
               <li className="nav-item ">
                 <NavLink className="nav-link">
                   <button

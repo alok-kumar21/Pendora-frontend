@@ -127,15 +127,7 @@ const WishList = () => {
                             <span className="h5 text-primary">
                               ₹{item.product.price}
                             </span>
-                            {item.product.discount > 0 && (
-                              <small className="text-muted ms-2 text-decoration-line-through">
-                                ₹
-                                {Math.round(
-                                  item.product.price *
-                                    (1 + item.product.discount / 100)
-                                )}
-                              </small>
-                            )}
+
                             <small className="ms-2 text-success">
                               {item.product.discount}% off
                             </small>

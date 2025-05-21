@@ -130,76 +130,10 @@ const Address = () => {
   }
 
   return (
-    <section className="container mt-5 mb-5">
+    <section className="container  mb-5">
       <div className="my-5">
         <h3 className="text-center">Manage Addresses</h3>
       </div>
-
-      {/* Address Selection */}
-      {addresses?.length > 0 ? (
-        <div className="card mb-4">
-          <div className="card-header bg-primary text-white"></div>
-          <div className="card-body">
-            <div className="list-group">
-              {addresses?.map((item) => (
-                <div key={item._id} className="list-group-item">
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="radio"
-                      name="deliveryAddress"
-                      onChange={() => handleAddressSelection(item._id)}
-                    />
-                    <label className="form-check-label" htmlFor={``}>
-                      <div className="d-flex justify-content-between align-items-start">
-                        <div>
-                          <strong>{item.name}</strong>
-                          <p className="mb-1">
-                            {item.address}, {item.locality}
-                          </p>
-                          <p className="mb-1">
-                            {item.city}, {item.state} - {item.pincode}
-                          </p>
-                          <p className="mb-0">Landmark: {item.landmark}</p>
-                          <p className="mb-0">Mobile: {item.mobilenumber}</p>
-                        </div>
-                        <div>
-                          <button
-                            onClick={() => handleEditAddress(item)}
-                            className="btn btn-sm btn-outline-primary me-2"
-                          >
-                            Edit
-                          </button>
-                          <button
-                            onClick={() => handleDeleteAddress(item._id)}
-                            className="btn btn-sm btn-outline-danger"
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-              ))}
-              {selectedAddress && (
-                <NavLink
-                  to="/ordersummary"
-                  type="submit"
-                  className="btn btn-primary mt-3"
-                >
-                  Continue
-                </NavLink>
-              )}
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div>
-          <p className="text-center">Address is Empty</p>
-        </div>
-      )}
-
       {/* Add/Edit Address Form */}
 
       <div className="accordion " id="accordionExample">
@@ -337,6 +271,71 @@ const Address = () => {
           </div>
         </div>
       </div>
+
+      {/* Address Selection */}
+      {addresses?.length > 0 ? (
+        <div className="card mb-4 mt-3">
+          <div className="card-header bg-primary text-white"></div>
+          <div className="card-body">
+            <div className="list-group">
+              {addresses?.map((item) => (
+                <div key={item._id} className="list-group-item">
+                  <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      name="deliveryAddress"
+                      onChange={() => handleAddressSelection(item._id)}
+                    />
+                    <label className="form-check-label" htmlFor={``}>
+                      <div className="d-flex justify-content-between align-items-start">
+                        <div>
+                          <strong>{item.name}</strong>
+                          <p className="mb-1">
+                            {item.address}, {item.locality}
+                          </p>
+                          <p className="mb-1">
+                            {item.city}, {item.state} - {item.pincode}
+                          </p>
+                          <p className="mb-0">Landmark: {item.landmark}</p>
+                          <p className="mb-0">Mobile: {item.mobilenumber}</p>
+                        </div>
+                        <div>
+                          <button
+                            onClick={() => handleEditAddress(item)}
+                            className="btn btn-sm btn-outline-primary me-2"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDeleteAddress(item._id)}
+                            className="btn btn-sm btn-outline-danger"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+              ))}
+              {selectedAddress && (
+                <NavLink
+                  to="/ordersummary"
+                  type="submit"
+                  className="btn btn-primary mt-3"
+                >
+                  Continue
+                </NavLink>
+              )}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <p className="text-center">Address is Empty</p>
+        </div>
+      )}
     </section>
   );
 };

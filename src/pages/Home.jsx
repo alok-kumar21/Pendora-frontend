@@ -86,7 +86,7 @@ const Home = () => {
             <div className="carousel-item active">
               <img
                 src="https://cdn.vectorstock.com/i/500p/09/80/online-shopping-banner-vector-17230980.jpg"
-                className="d-block w-100 "
+                className="d-block w-100 img-fluid"
                 style={{ height: "30rem" }}
                 alt="..."
               />
@@ -94,7 +94,7 @@ const Home = () => {
             <div className="carousel-item">
               <img
                 src="https://thumbs.dreamstime.com/z/online-shopping-web-banner-template-design-flat-style-vector-illustration-191895463.jpg"
-                className="d-block w-100"
+                className="d-block w-100 img-fluid"
                 alt="..."
                 style={{ height: "30rem" }}
               />
@@ -102,7 +102,7 @@ const Home = () => {
             <div className="carousel-item">
               <img
                 src="https://img.freepik.com/free-vector/flat-design-grocery-store-sale-banner_23-2151074240.jpg"
-                className="d-block w-100"
+                className="d-block w-100 img-fluid"
                 alt="..."
                 style={{ height: "30rem" }}
               />

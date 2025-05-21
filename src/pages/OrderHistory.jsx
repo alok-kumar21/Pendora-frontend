@@ -25,8 +25,16 @@ const OrderHistory = () => {
                     <div className="col-md-8">
                       <div className="card-body">
                         <h5 className="card-title">{item.product.name}</h5>
-                        <span>Rating: {parseFloat(item.product.rating)}</span>
+                        <div className="d-flex align-items-center mb-2">
+                          <span className="badge bg-warning text-dark me-2">
+                            {item.product.rating} ★
+                          </span>
+                        </div>
+
                         <p className="card-text">₹{item.product.price}</p>
+                        <p className="card-text text-success">
+                          Status:- Delivered
+                        </p>
                       </div>
                     </div>
                     <hr />

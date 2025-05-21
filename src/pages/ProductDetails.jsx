@@ -196,7 +196,7 @@ const ProductDetails = () => {
                       <div className="card h-100">
                         <img
                           src={item.images}
-                          className="card-img-top p-3"
+                          className="card-img-top"
                           alt={item.name}
                         />
                         <div className="card-body d-flex flex-column">

@@ -109,7 +109,7 @@ const ProductListing = () => {
             </div>
           )}
 
-          <div>
+          <div className="mb-4">
             <h5>
               Showing Products
               <span>&nbsp; (showing {products?.length} products)</span>
@@ -130,7 +130,7 @@ const ProductListing = () => {
 
                   <img
                     className="card-img-top p-3"
-                    // style={{ height: "50%", objectFit: "cover" }}
+                   
                     src={item.images}
                     alt={item.name}
                   />
@@ -146,15 +146,14 @@ const ProductListing = () => {
                         ₹{item.price}
                       </h6>
                     </Link>
-                    <div className="d-grid">
-                      <button
-                        onClick={() => addToCart(item)}
-                        className="btn btn-primary rounded-0 mt-auto"
-                        type="button"
-                      >
-                        Add To Cart
-                      </button>
-                    </div>
+
+                    <button
+                      onClick={() => addToCart(item)}
+                      className="btn btn-primary rounded-0 mt-auto"
+                      type="button"
+                    >
+                      Add To Cart
+                    </button>
                   </div>
                 </div>
               </div>
