@@ -127,12 +127,12 @@ const Cart = () => {
                       <div className="d-grid gap-2 mt-3">
                         <button
                           onClick={() => removeFromCart(item._id)}
-                          className="btn btn-danger rounded"
+                          className="btn btn-danger rounded-0"
                         >
                           Remove From Cart
                         </button>
                         <button
-                          className="btn btn-outline-success rounded"
+                          className="btn btn-outline-success rounded-0"
                           onClick={() => {
                             if (item.product) {
                               moveToWishlist(item);

@@ -15,7 +15,7 @@ const WishList = () => {
     clearItemExists,
   } = useCartContext();
 
-  // Clear alerts 
+  // Clear alerts
   useEffect(() => {
     return () => {
       clearCartAlerts();
@@ -136,13 +136,16 @@ const WishList = () => {
                                 )}
                               </small>
                             )}
+                            <small className="ms-2 text-success">
+                              {item.product.discount}% off
+                            </small>
                           </div>
                         </div>
                         <div className="d-grid gap-2">
                           <button
                             className={`btn ${
                               inCart ? "btn-success" : "btn-primary"
-                            }`}
+                            } rounded-0`}
                             onClick={() => moveToCart(item)}
                           >
                             {inCart ? (
@@ -158,7 +161,7 @@ const WishList = () => {
                             )}
                           </button>
                           <button
-                            className="btn btn-outline-danger"
+                            className="btn btn-outline-danger rounded-0"
                             onClick={() => removeFromWishlist(item._id)}
                           >
                             <i className="bi bi-trash me-2"></i>
