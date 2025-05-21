@@ -12,7 +12,7 @@ export function CartProvider({ children }) {
   const [search, setSearch] = useState();
 
   console.log(search);
-  // API calls
+  // products data
   const {
     data: product,
     loading,
@@ -22,16 +22,19 @@ export function CartProvider({ children }) {
       ? `https://pendora-backend.vercel.app/v1/product/search/${search}`
       : "https://pendora-backend.vercel.app/v1/products"
   );
+  // cart Data
   const {
     data: cartData,
     loading: cloading,
     error: cerror,
   } = useFetch("https://pendora-backend.vercel.app/v1/cart");
+  //wishlist data
   const {
     data: wishlistData,
     loading: wishlistLoading,
     error: wishlistError,
   } = useFetch("https://pendora-backend.vercel.app/v2/wishlist");
+  // address page data
   const {
     data: address,
     loading: addressLoading,
