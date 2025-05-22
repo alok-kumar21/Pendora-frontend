@@ -16,19 +16,19 @@
 
 
 
-# About:
-The Pendora App is a MERN stack (MongoDB, Express, React, Node.js) application designed to help users discover and explore various products. It features a list of Products with filtering options By Price, rating, and Product, search, Product add to Cart, and add to wish list, making it easy to find relevant products. A search bar allows users to quickly locate specific Product by title. When a user clicks on an product, they are directed to a detailed view, providing comprehensive information such as Price, Discount, description, and Size details. This app offers a seamless and interactive experience for ordering  products.
+# About Pendora:
+The Pendora is a MERN stack (MongoDB, Express, React, Node.js) application designed to help users discover and explore various products. It features a list of Products with filtering options By Price, rating, and Product, search, Product add to Cart, and add to wish list, making it easy to find relevant products. A search bar allows users to quickly locate specific Product by title. When a user clicks on an product, they are directed to a detailed view, providing comprehensive information such as Price, Discount, description, and Size details. This app offers a seamless and interactive experience for ordering  products.
 
-# Meetup App – Key Features:
-1:) Search product✅,
-2:) Add item to cart✅,
-3:) Remove item from cart✅,
-4:) Add item to wishlist✅,
-5:) Remove item from wishlist, move item to cart✅,
-6:) Productlist page✅,
-7:) Product detail page✅,
-8:) All filters by price, category, rating are working fine, ✅,
-9:) Clear all filters, sorting✅,
+# Pendroa – Key Features:
+1:) Search product✅.
+2:) Add item to cart✅.
+3:) Remove item from cart✅.
+4:) Add item to wishlist✅.
+5:) Remove item from wishlist, move item to cart✅.
+6:) Productlist page✅.
+7:) Product detail page✅.
+8:) All filters by price, category, rating are working fine, ✅.
+9:) Clear all filters, sorting✅.
 10:) Price details✅,
 11:) Place order feature✅,
 12:) Address management✅,
