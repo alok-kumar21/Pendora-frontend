@@ -22,15 +22,15 @@ The Pendora is a MERN stack (MongoDB, Express, React, Node.js) application desig
 # Pendroa – Key Features:
 1:) Search product✅. <br/>
 2:) Add item to cart✅.<br/>
-3:) Remove item from cart✅.
-4:) Add item to wishlist✅.
-5:) Remove item from wishlist, move item to cart✅.
-6:) Productlist page✅.
-7:) Product detail page✅.
-8:) All filters by price, category, rating are working fine, ✅.
-9:) Clear all filters, sorting✅.
-10:) Price details✅.
-11:) Place order feature✅.
-12:) Address management✅.
-13:) Order history page✅.
-14:) Responsiveness✅
+3:) Remove item from cart✅.<br/>
+4:) Add item to wishlist✅.<br/>
+5:) Remove item from wishlist, move item to cart✅.<br/>
+6:) Productlist page✅.<br/>
+7:) Product detail page✅.<br/>
+8:) All filters by price, category, rating are working fine, ✅.<br/>
+9:) Clear all filters, sorting✅.<br/>
+10:) Price details✅.<br/>
+11:) Place order feature✅.<br/>
+12:) Address management✅.<br/>
+13:) Order history page✅.<br/>
+14:) Responsiveness✅<br/>
