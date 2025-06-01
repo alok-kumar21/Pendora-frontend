@@ -45,8 +45,8 @@ const Address = () => {
     try {
       const addingData = await fetch(
         editingId
-          ? `https://pendora-backend.vercel.app/v3/address/${editingId}`
-          : `https://pendora-backend.vercel.app/v1/address`,
+          ? `https://meet-up-backend-pi.vercel.app/v3/address/${editingId}`
+          : `https://meet-up-backend-pi.vercel.app/v1/address`,
         {
           method: "POST",
           headers: {
@@ -82,7 +82,7 @@ const Address = () => {
   async function handleDeleteAddress(addressId) {
     try {
       const deletedAddress = await fetch(
-        `https://pendora-backend.vercel.app/v3/address/${addressId}`,
+        `https://meet-up-backend-pi.vercel.app/v3/address/${addressId}`,
         {
           method: "DELETE",
         }
