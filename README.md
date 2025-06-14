@@ -69,13 +69,101 @@ Watch a walkthrough (5–7 minutes) of all major features of this app:
 s
 List all Product<br>
 Sample Response:<br>
-`[{ _id, name, description, ... }, …]`
+`[ {
+        "dimensions": {
+            "width": "2.82 inches",
+            "height": "5.77 inches",
+            "depth": "0.32 inch",
+            "weight": "6.60 ounces"
+        },
+        "_id": "6811ca7b85ae42dbb4060d70",
+        "name": "iPhone 15 Pro",
+        "description": [
+            "Latest Apple smartphone with A17 Pro chip",
+            "Titanium design",
+            "Pro camera system"
+        ],
+        "brand": "Apple",
+        "price": 999,
+        "discount": 50,
+        "deliveryCharge": true,
+        "currency": "USD",
+        "in_Stock": true,
+        "rating": 4.8,
+        "images": [
+            "https://cubotlifestyle.com/cdn/shop/files/Untitleddesign_15.jpg?v=1711791060&width=1445",
+            "iphone15pro2.jpg"
+        ],
+        "features": [
+            "6.1-inch Super Retina XDR display",
+            "5G capable",
+            "Face ID"
+        ],
+        "warranty": "1 year limited",
+        "free_Shipping": true,
+        "category": {
+            "_id": "680e71e4cd9ad19fdf20f765",
+            "name": "Electronics",
+            "description": "Devices and gadgets including smartphones, laptops, and home appliances",
+            "createdAt": "2025-04-27T18:05:24.846Z",
+            "updatedAt": "2025-04-27T18:05:24.846Z",
+            "__v": 0,
+            "images": "https://static.vecteezy.com/system/resources/thumbnails/022/610/083/small/3d-laptop-with-headphone-symbol-on-the-screen-online-listening-to-music-png.png"
+        },
+        "createdAt": "2025-04-30T07:00:11.645Z",
+        "updatedAt": "2025-04-30T07:00:11.645Z",
+        "__v": 0
+    }]`
 
 ### **GET /v1/products/:productId**<br>
 
 Get details for one Product<br>
 Sample Response:<br>
-`{ _id, name, description, images}`
+` {
+        "dimensions": {
+            "width": "7.99 inches",
+            "height": "2.94 inches",
+            "depth": "10.43 inches",
+            "weight": "8.82 ounces"
+        },
+        "_id": "6811ca9485ae42dbb4060d72",
+        "name": "Sony Headphones",
+        "description": [
+            "Premium noise-canceling headphones",
+            "30-hour battery life",
+            "Crystal clear hands-free calling"
+        ],
+        "brand": "Sony",
+        "price": 399.99,
+        "discount": 60,
+        "deliveryCharge": true,
+        "currency": "USD",
+        "in_Stock": true,
+        "rating": 3.2,
+        "images": [
+            "https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1682757035/Croma%20Assets/Entertainment/Headphones%20and%20Earphones/Images/272419_jqvb9x.png?tr=w-600",
+            "sony-headphones2.jpg"
+        ],
+        "features": [
+            "Industry-leading noise cancellation",
+            "Touch controls",
+            "Built-in Alexa"
+        ],
+        "warranty": "2 years manufacturer",
+        "free_Shipping": false,
+        "category": {
+            "_id": "680e71e4cd9ad19fdf20f765",
+            "name": "Electronics",
+            "description": "Devices and gadgets including smartphones, laptops, and home appliances",
+            "createdAt": "2025-04-27T18:05:24.846Z",
+            "updatedAt": "2025-04-27T18:05:24.846Z",
+            "__v": 0,
+            "images": "https://static.vecteezy.com/system/resources/thumbnails/022/610/083/small/3d-laptop-with-headphone-symbol-on-the-screen-online-listening-to-music-png.png"
+        },
+        "createdAt": "2025-04-30T07:00:36.501Z",
+        "updatedAt": "2025-04-30T07:00:36.501Z",
+        "__v": 0
+    }`
 
 ### **POST /products**<br>
 
