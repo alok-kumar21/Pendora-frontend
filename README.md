@@ -41,27 +41,27 @@ Watch a walkthrough (5–7 minutes) of all major features of this app:
 
 **Search**
 
--Instantly search for products by typing keywords in the search bar.
--Live filtering as you type—no need to refresh or click search.
+- Instantly search for products by typing keywords in the search bar.
+- Live filtering as you type—no need to refresh or click search.
 
 **Product Filtering**
 
--Category-Based Filtering: Narrow down products by specific categories.
--Sort by Price: Choose between "Low to High" or "High to Low" price sorting.
--Rating Filter: View products based on user ratings.
--Price Range Filter: Select a custom price range using a slider to find matching products.
+- Category-Based Filtering: Narrow down products by specific categories.
+- Sort by Price: Choose between "Low to High" or "High to Low" price sorting.
+- Rating Filter: View products based on user ratings.
+- Price Range Filter: Select a custom price range using a slider to find matching products.
 
 **Add to Cart**
 
--Add any product to your shopping cart with a single click.
--View cart details with quantities, total price, and product names.
--Remove products from the cart anytime.
+- Add any product to your shopping cart with a single click.
+- View cart details with quantities, total price, and product names.
+- Remove products from your cart at any time.
 
 **Add Product to WishList**
 
--Save your favorite products to a wishlist for later viewing.
--Easily add or remove items from the wishlist.
--Perfect for creating a “save for later” shopping experience.
+- Save your favourite products to a wishlist for later viewing.
+- Easily add or remove items from the wishlist.
+- Perfect for creating a “save for later” shopping experience.
 
 ## API Reference
 
@@ -75,7 +75,7 @@ Sample Response:<br>
 
 Get details for one Product<br>
 Sample Response:<br>
-`{ _id, name, discription, images}`
+`{ _id, name, description, images}`
 
 ### **POST /products**<br>
 
@@ -85,7 +85,7 @@ Sample Response:<br>
 
 ### **POST /v1/product/search/:producttitle**<br>
 
-Search the Product by It's Product title<br>
+Search the Product by Its Product title<br>
 Sample Response:<br>
 `{ id, name,description,rating }`
 
