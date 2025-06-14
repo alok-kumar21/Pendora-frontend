@@ -1,7 +1,8 @@
 # Pendora E-Commerce Website
 
-A full-stack recipe management app where you can search, add to card, add to wishlist, edit address, and view detailed Products.  
-Built with a React frontend, Express/Node backend, MongoDB database, and JWT-based authentication.
+Pendora is a full-stack e-commerce application where users can browse products, search items, add them to the cart or wishlist, manage their address, and view detailed product information.
+
+Built with a **React** frontend, **Node.js/Express** backend, **MongoDB** database
 
 ---
 
@@ -29,7 +30,6 @@ npm run dev
 - Express
 - MongoDB
 - Context API
--
 
 ## Demo Video
 
@@ -40,29 +40,33 @@ Watch a walkthrough (5–7 minutes) of all major features of this app:
 
 **Search**
 
-- Displays a list of all recipes
-- Search recipes by title in real time
+- Instantly search for products by typing keywords in the search bar.
+- Live filtering as you type—no need to refresh or click search.
 
 **Product Filtering**
 
-- Filter by category Price Low to High and Hight to Low
-- Filtering by Ration
-- Price Range Filtering
+- Category-Based Filtering: Narrow down products by specific categories.
+- Sort by Price: Choose between "Low to High" or "High to Low" price sorting.
+- Rating Filter: View products based on user ratings.
+- Price Range Filter: Select a custom price range using a slider to find matching products.
 
 **Add to Cart**
 
-- We Can add the Product in the cart
-- and remove the Product from Cart
+- Add any product to your shopping cart with a single click.
+- View cart details with quantities, total price, and product names.
+- Remove products from your cart at any time.
 
 **Add Product to WishList**
 
-- we can add the Product in wishlist page.
-- we can also remove from wishlist
+- Save your favourite products to a wishlist for later viewing.
+- Easily add or remove items from the wishlist.
+- Perfect for creating a “save for later” shopping experience.
 
 ## API Reference
 
 ### **GET /v1/products**<br>
 
+s
 List all Product<br>
 Sample Response:<br>
 `[{ _id, name, description, ... }, …]`
@@ -71,7 +75,7 @@ Sample Response:<br>
 
 Get details for one Product<br>
 Sample Response:<br>
-`{ _id, name, discription, images}`
+`{ _id, name, description, images}`
 
 ### **POST /products**<br>
 
@@ -81,7 +85,7 @@ Sample Response:<br>
 
 ### **POST /v1/product/search/:producttitle**<br>
 
-Search the Product by It's Product title<br>
+Search the Product by Its Product title<br>
 Sample Response:<br>
 `{ id, name,description,rating }`
 
