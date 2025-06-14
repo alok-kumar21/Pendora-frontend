@@ -1,31 +1,24 @@
-# Recipe Organizer
+# Pendora E-Commerce Website
 
-A full-stack recipe management app where you can browse, search, add, edit, and view detailed recipes.  
+A full-stack recipe management app where you can search, add to card, add to wishlist, edit address, and view detailed Products.  
 Built with a React frontend, Express/Node backend, MongoDB database, and JWT-based authentication.
 
 ---
 
 ## Demo Link
 
-[Live Demo](https://my-recipe-organizer.com)
-
----
-
-## Login
-
-> **Guest**  
-> Username: `guest_user`  
-> Password: `guest_pass`
+[Live Demo](https://pendora-frontend.vercel.app/)
 
 ---
 
 ## Quick Start
 
 ```
-git clone https://github.com/<your-username>/<your-repo>.git
+git clone https://github.com/alok-kumar21/Pendora-frontend.git
 cd <your-repo>
 npm install
-npm run dev      # or `npm start` / `yarn dev`
+npm run dev
+
 ```
 
 ## Technologies
@@ -35,7 +28,8 @@ npm run dev      # or `npm start` / `yarn dev`
 - Node.js
 - Express
 - MongoDB
-- JWT
+- Context API
+-
 
 ## Demo Video
 
@@ -44,52 +38,53 @@ Watch a walkthrough (5–7 minutes) of all major features of this app:
 
 ## Features
 
-**Home**
+**Search**
 
 - Displays a list of all recipes
 - Search recipes by title in real time
 
-**Recipe Listing**
+**Product Filtering**
 
-- Paginated recipe list
-- “Add New Recipe” button opens a form
+- Filter by category Price Low to High and Hight to Low
+- Filtering by Ration
+- Price Range Filtering
 
-**Recipe Details**
+**Add to Cart**
 
-- View full recipe information (ingredients, steps, images)
-- “Edit Recipe” to update title, ingredients, steps
+- We Can add the Product in the cart
+- and remove the Product from Cart
 
-**Authentication**
+**Add Product to WishList**
 
-- User signup and login with JWT
-- Protected routes for adding/editing recipes
+- we can add the Product in wishlist page.
+- we can also remove from wishlist
 
 ## API Reference
 
-### **GET /api/recipes**<br>
+### **GET /v1/products**<br>
 
-List all recipes<br>
+List all Product<br>
 Sample Response:<br>
-`[{ _id, title, summary, ... }, …]`
+`[{ _id, name, description, ... }, …]`
 
-### **GET /api/recipes/:id**<br>
+### **GET /v1/products/:productId**<br>
 
-Get details for one recipe<br>
+Get details for one Product<br>
 Sample Response:<br>
-`{ _id, title, ingredients, steps, ... }`
+`{ _id, name, discription, images}`
 
-### **POST /api/recipes**<br>
+### **POST /products**<br>
 
 Create a new recipe (protected)<br>
 Sample Response:<br>
-`{ _id, title, summary, ... }`
+`{ _id, title, name, ... }`
 
-### **POST /api/auth/signup**<br>
+### **POST /v1/product/search/:producttitle**<br>
 
-Register a new user<br>
+Search the Product by It's Product title<br>
 Sample Response:<br>
-`{ userId, token }`
+`{ id, name,description,rating }`
 
 ## Contact
 
-For bugs or feature requests, please reach out to akanksha.xxx@gmail.com
+For bugs or feature requests, please reach out to alok.8kumar21@gmail.com
