@@ -30,7 +30,6 @@ npm run dev
 - Express
 - MongoDB
 - Context API
--
 
 ## Demo Video
 
@@ -67,6 +66,7 @@ Watch a walkthrough (5–7 minutes) of all major features of this app:
 
 ### **GET /v1/products**<br>
 
+s
 List all Product<br>
 Sample Response:<br>
 `[{ _id, name, description, ... }, …]`
