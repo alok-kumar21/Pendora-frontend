@@ -1,31 +1,25 @@
-# Recipe Organizer
+# Pendora E-Commerce Website
 
-A full-stack recipe management app where you can browse, search, add, edit, and view detailed recipes.  
-Built with a React frontend, Express/Node backend, MongoDB database, and JWT-based authentication.
+Pendora is a full-stack e-commerce application where users can browse products, search items, add them to the cart or wishlist, manage their address, and view detailed product information.
+
+Built with a **React** frontend, **Node.js/Express** backend, **MongoDB** database
 
 ---
 
 ## Demo Link
 
-[Live Demo](https://my-recipe-organizer.com)
-
----
-
-## Login
-
-> **Guest**  
-> Username: `guest_user`  
-> Password: `guest_pass`
+[Live Demo](https://pendora-frontend.vercel.app/)
 
 ---
 
 ## Quick Start
 
 ```
-git clone https://github.com/<your-username>/<your-repo>.git
+git clone https://github.com/alok-kumar21/Pendora-frontend.git
 cd <your-repo>
 npm install
-npm run dev      # or `npm start` / `yarn dev`
+npm run dev
+
 ```
 
 ## Technologies
@@ -35,7 +29,8 @@ npm run dev      # or `npm start` / `yarn dev`
 - Node.js
 - Express
 - MongoDB
-- JWT
+- Context API
+-
 
 ## Demo Video
 
@@ -44,52 +39,56 @@ Watch a walkthrough (5–7 minutes) of all major features of this app:
 
 ## Features
 
-**Home**
+**Search**
 
-- Displays a list of all recipes
-- Search recipes by title in real time
+-Instantly search for products by typing keywords in the search bar.
+-Live filtering as you type—no need to refresh or click search.
 
-**Recipe Listing**
+**Product Filtering**
 
-- Paginated recipe list
-- “Add New Recipe” button opens a form
+-Category-Based Filtering: Narrow down products by specific categories.
+-Sort by Price: Choose between "Low to High" or "High to Low" price sorting.
+-Rating Filter: View products based on user ratings.
+-Price Range Filter: Select a custom price range using a slider to find matching products.
 
-**Recipe Details**
+**Add to Cart**
 
-- View full recipe information (ingredients, steps, images)
-- “Edit Recipe” to update title, ingredients, steps
+-Add any product to your shopping cart with a single click.
+-View cart details with quantities, total price, and product names.
+-Remove products from the cart anytime.
 
-**Authentication**
+**Add Product to WishList**
 
-- User signup and login with JWT
-- Protected routes for adding/editing recipes
+-Save your favorite products to a wishlist for later viewing.
+-Easily add or remove items from the wishlist.
+-Perfect for creating a “save for later” shopping experience.
 
 ## API Reference
 
-### **GET /api/recipes**<br>
+### **GET /v1/products**<br>
 
-List all recipes<br>
+List all Product<br>
 Sample Response:<br>
-`[{ _id, title, summary, ... }, …]`
+`[{ _id, name, description, ... }, …]`
 
-### **GET /api/recipes/:id**<br>
+### **GET /v1/products/:productId**<br>
 
-Get details for one recipe<br>
+Get details for one Product<br>
 Sample Response:<br>
-`{ _id, title, ingredients, steps, ... }`
+`{ _id, name, discription, images}`
 
-### **POST /api/recipes**<br>
+### **POST /products**<br>
 
 Create a new recipe (protected)<br>
 Sample Response:<br>
-`{ _id, title, summary, ... }`
+`{ _id, title, name, ... }`
 
-### **POST /api/auth/signup**<br>
+### **POST /v1/product/search/:producttitle**<br>
 
-Register a new user<br>
+Search the Product by It's Product title<br>
 Sample Response:<br>
-`{ userId, token }`
+`{ id, name,description,rating }`
 
 ## Contact
 
-For bugs or feature requests, please reach out to akanksha.xxx@gmail.com
+For bugs or feature requests, please reach out to alok.8kumar21@gmail.com
