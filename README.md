@@ -33,8 +33,7 @@ npm run dev
 
 ## Demo Video
 
-Watch a walkthrough (5–7 minutes) of all major features of this app:
-[Loom Video Link]()
+[Live Demo](https://pendora-frontend.vercel.app/)
 
 ## Features
 
