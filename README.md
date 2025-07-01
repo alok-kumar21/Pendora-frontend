@@ -90,36 +90,14 @@ Sample Response:<br>
         "currency": "USD",
         "in_Stock": true,
         "rating": 4.8,
-        "images": [
-            "https://cubotlifestyle.com/cdn/shop/files/Untitleddesign_15.jpg?v=1711791060&width=1445",
-            "iphone15pro2.jpg"
-        ],
-        "features": [
-            "6.1-inch Super Retina XDR display",
-            "5G capable",
-            "Face ID"
-        ],
-        "warranty": "1 year limited",
-        "free_Shipping": true,
-        "category": {
-            "_id": "680e71e4cd9ad19fdf20f765",
-            "name": "Electronics",
-            "description": "Devices and gadgets including smartphones, laptops, and home appliances",
-            "createdAt": "2025-04-27T18:05:24.846Z",
-            "updatedAt": "2025-04-27T18:05:24.846Z",
-            "__v": 0,
-            "images": "https://static.vecteezy.com/system/resources/thumbnails/022/610/083/small/3d-laptop-with-headphone-symbol-on-the-screen-online-listening-to-music-png.png"
-        },
-        "createdAt": "2025-04-30T07:00:11.645Z",
-        "updatedAt": "2025-04-30T07:00:11.645Z",
-        "__v": 0
+       }...
     }]`
 
 ### **GET /v1/products/:productId**<br>
 
 Get details for one Product<br>
 Sample Response:<br>
-` {_id:3489jr34n34,name:Mobile,description:"dkfjdknv"  }`
+` {_id:3489jr34n34, name:Mobile, description: "This is very smart mobile phone"  }`
 
 ### **POST /products**<br>
 
@@ -131,7 +109,7 @@ Sample Response:<br>
 
 Search the Product by Its Product title<br>
 Sample Response:<br>
-`{ id, name,description,rating }`
+`{ id, name, description,rating, ... }`
 
 ## Contact
 
