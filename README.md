@@ -29,6 +29,7 @@ npm run dev
 - Node.js
 - Express
 - MongoDB
+- Bootstrap
 - Context API
 
 ## Demo Video
