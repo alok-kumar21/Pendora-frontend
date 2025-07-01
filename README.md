@@ -33,7 +33,7 @@ npm run dev
 
 ## Demo Video
 
-[Live Demo](https://pendora-frontend.vercel.app/)
+[Video Link](https://youtu.be/FzJ-0-eVBI0)
 
 ## Features
 
