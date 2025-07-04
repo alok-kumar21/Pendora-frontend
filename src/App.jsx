@@ -15,6 +15,7 @@ import Address from "./pages/Address";
 import OrderSummary from "./pages/OrderSummary";
 import Profile from "./pages/Profile";
 import OrderHistory from "./pages/OrderHistory";
+import Footer from "./components/Footer";
 
 import { CartProvider } from "./context/CartContext";
 
@@ -38,6 +39,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/orderhistory" element={<OrderHistory />} />
           </Routes>
+          <Footer />
         </Router>
       </CartProvider>
     </>

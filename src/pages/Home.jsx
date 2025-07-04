@@ -134,47 +134,124 @@ const Home = () => {
           </button>
         </div>
       </section>
-      {/* collection */}
+      {/* New Arrivals */}
 
-      <section className="container mt-5 mb-5">
+      <section className="container mt-5">
+        <div className="mb-4">
+          <h4>New Arrivals</h4>
+        </div>
         <div className="row">
-          <div className="col-md-6 p-4 bg-light">
-            <div className="d-flex ">
-              <div>
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Square_200x200.png"
-                  alt=""
-                  className="img-fluid"
-                  style={{ width: "8rem", height: "9rem" }}
-                />
-              </div>
+          <div className="col-md-3 ">
+            <div className="card">
+              <img
+                src="https://adornhomez.com/cdn/shop/products/Lawson_84.5_Recessed_Arm_Sofa_300x300.png?v=1670074470"
+                alt="img-sofa"
+                className="img-fluid rounded"
+              />
 
-              <div className="ms-4">
-                <p>New Arivals</p>
-                <h5 className="mt-4">Summar Collection</h5>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Facilis, ratione!
+              <div className="card-body">
+                <p className="text-center">
+                  <strong>Designer sofa</strong>
+                </p>
+                <p className="text-center">
+                  <strong>₹</strong> 10,000
                 </p>
               </div>
             </div>
           </div>
-          <div className="col-md-6 p-4 bg-light">
-            <div className="d-flex">
-              <div>
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/1/1b/Square_200x200.png"
-                  alt=""
-                  className="img-fluid"
-                  style={{ width: "8rem", height: "9rem" }}
-                />
+          <div className="col-md-3">
+            <div className="card">
+              <img
+                src="https://fernindia.com/wp-content/uploads/2024/04/Artboard-1-148-300x300.png"
+                alt="img-sofa"
+                className="img-fluid rounded"
+              />
+
+              <div className="card-body">
+                <p className="text-center">
+                  <strong>King Size Bed</strong>
+                </p>
+                <p className="text-center">
+                  <strong>₹</strong> 15,000
+                </p>
               </div>
-              <div className="ms-4">
-                <p>New Arivals</p>
-                <h5 className="mt-4">Summar Collection</h5>
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="card">
+              <img
+                src="https://olayla.in/cdn/shop/files/vedaUMIshirtPeachprintTARA1_300x300.jpg?v=1746604850"
+                alt="img-sofa"
+                className="img-fluid rounded"
+              />
+
+              <div className="card-body">
+                <p className="text-center">
+                  <strong>Brand New Dress</strong>
+                </p>
+                <p className="text-center">
+                  <strong>₹</strong> 7,000
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-3">
+            <div className="card">
+              <img
+                src="https://bhatiamobile.com/file/2023/07/OnePlus-Nord-3-5G_Misty-Green_1-300x300.webp"
+                alt="img-sofa"
+                className="img-fluid rounded"
+              />
+
+              <div className="card-body">
+                <p className="text-center">
+                  <strong>Brand New Dress</strong>
+                </p>
+                <p className="text-center">
+                  <strong>₹</strong> 45,000
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* collections */}
+
+      <section className=" container mt-5 mb-5">
+        <div className="mb-4">
+          <h4>New Collection</h4>
+        </div>
+        <div className="row">
+          <div className="col-md-6">
+            <div className="card mt-3">
+              <img
+                src="https://basicslife.com/cdn/shop/articles/71_222a9ad5-e25f-4205-b3c8-318a039b4a12.jpg?v=1749816173&width=600"
+                alt="img-summer"
+                className="img-fluid"
+              />
+              <div className="card-body">
                 <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Facilis, ratione!
+                  <strong className="h4">Boys Summer Collection</strong>
+                </p>
+                <p>
+                  Cool clothes for hot days, Where comfort meets bold fashion.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-6">
+            <div className="card mt-3">
+              <img
+                src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/kids-clothing-summer-off-shop-now-poster-design-template-5a244d4b59f20ec11d85ac6b1597f40e_screen.jpg?ts=1698158016"
+                alt="img-summer"
+                className="img-fluid"
+              />
+              <div className="card-body">
+                <p>
+                  <strong className="h4">Girls Summer Collection</strong>
+                </p>
+                <p>
+                  Cool clothes for hot days, Where comfort meets bold fashion.
                 </p>
               </div>
             </div>
